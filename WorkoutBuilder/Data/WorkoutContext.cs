@@ -9,5 +9,15 @@ namespace WorkoutBuilder.Data
 {
     public class WorkoutContext:DbContext
     {
+
+        public WorkoutContext()
+        {
+
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
+        {
+            options.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=WorkoutBuilder;Trusted_Connection=True;");
+        }
     }
 }
