@@ -1,12 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace WorkoutBuilder.Model
 {
-    internal class Workout
+    public class Workout
     {
+        [Key]
+        public int WorkoutID { get; set; }
+        [Required]
+        public string WorkoutName { get; set; }
+
+        public int WorkoutPartID { get; set; }
+        public WorkoutPart WorkoutPart { get; set; }
+
+        public string WorkoutDescription { get; set; }
+
+        public List<WorkoutOfDay> WorkoutOfDay { get; set; }
     }
 }
