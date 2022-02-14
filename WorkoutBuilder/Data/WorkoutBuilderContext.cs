@@ -8,9 +8,10 @@ using WorkoutBuilder.Model;
 
 namespace WorkoutBuilder.Data
 {
-    public class WorkoutOfDayContext:DbContext
+    public class WorkoutBuilderContext:DbContext
     {
-        public WorkoutOfDayContext()
+
+        public WorkoutBuilderContext()
         {
 
         }
@@ -20,6 +21,8 @@ namespace WorkoutBuilder.Data
             options.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=WorkoutBuilder;Trusted_Connection=True;");
         }
 
-        DbSet<WorkoutOfDay> WorkoutOfDays { get; set; }
+        public DbSet<Workout> Workouts { get; set; }
+        public DbSet<WorkoutOfDay> WorkoutOfDays { get; set; }
+        public DbSet<WorkoutPart> WorkoutParts { get; set; }
     }
 }
