@@ -1,8 +1,8 @@
 namespace WorkoutBuilder
 {
-    public partial class Form1 : Form
+    public partial class Add : Form
     {
-        public Form1()
+        public Add()
         {
             InitializeComponent();
         }
