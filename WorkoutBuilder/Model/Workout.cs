@@ -11,10 +11,12 @@ namespace WorkoutBuilder.Model
     {
         [Key]
         public int WorkoutID { get; set; }
+        
         [Required]
         public string WorkoutName { get; set; }
 
-        public int WorkoutPartID { get; set; }
+        public int WorkoutPartID { get; set; } // FK for workout part table
+        
         public WorkoutPart WorkoutPart { get; set; }
 
         public string WorkoutDescription { get; set; }

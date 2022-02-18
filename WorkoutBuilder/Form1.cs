@@ -6,5 +6,10 @@ namespace WorkoutBuilder
         {
             InitializeComponent();
         }
+
+        private void Add_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
