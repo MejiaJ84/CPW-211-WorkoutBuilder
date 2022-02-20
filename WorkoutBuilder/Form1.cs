@@ -1,3 +1,6 @@
+using WorkoutBuilder.Data;
+using WorkoutBuilder.Model;
+
 namespace WorkoutBuilder
 {
     public partial class Main : Form
@@ -5,6 +8,7 @@ namespace WorkoutBuilder
         public Main()
         {
             InitializeComponent();
+            
         }
 
         private void Add_Load(object sender, EventArgs e)
@@ -14,24 +18,33 @@ namespace WorkoutBuilder
 
         private void btntest1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Ive been clicked");
+            if (gbAddUpdateDelete.Tag.Equals("AddMG"))
+            {
+                addMuscleGroup(txtAddMuscleOrExercise);
+                txtAddMuscleOrExercise.Clear();
+            }
         }
 
         private void tsmAddmuscleGroup_Click(object sender, EventArgs e)
         {
-            gbtest1.Visible = true;
-            makeInvisible(gbtest1);
-            
-        }
-        
-        private static void makeInvisible(GroupBox gbVanish)
-        {
-            gbVanish.Visible = false;
+            gbAddUpdateDelete.Text = "Add Muscle Group";
+            label1.Text = "Enter Muscle Group to add to the database.";
+            gbAddUpdateDelete.Tag = "AddMG";
+            btntest1.Text = "Add to Muscle Groups";
+            gbAddUpdateDelete.Visible = true;
+
         }
 
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        public void addMuscleGroup(TextBox text)
         {
-            //menuStrip1.Items
+            WorkoutBuilderContext context = new();
+            WorkoutPart muscleGroup = new()
+            {
+                MuscleGroup = text.Text
+            };
+            context.WorkoutParts.Add(muscleGroup);
+            context.SaveChanges();
+            
         }
     }
 }
