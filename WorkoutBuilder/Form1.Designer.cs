@@ -45,7 +45,7 @@
             this.cbUpdateDelete = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtAddMuscleOrExercise = new System.Windows.Forms.TextBox();
-            this.btntest1 = new System.Windows.Forms.Button();
+            this.btnAddUpdate = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.gbAddUpdateDelete.SuspendLayout();
             this.SuspendLayout();
@@ -75,20 +75,20 @@
             // tsmAddmuscleGroup
             // 
             this.tsmAddmuscleGroup.Name = "tsmAddmuscleGroup";
-            this.tsmAddmuscleGroup.Size = new System.Drawing.Size(112, 22);
+            this.tsmAddmuscleGroup.Size = new System.Drawing.Size(180, 22);
             this.tsmAddmuscleGroup.Text = "Add ";
             this.tsmAddmuscleGroup.Click += new System.EventHandler(this.tsmAddmuscleGroup_Click);
             // 
             // tsmUpdateMG
             // 
             this.tsmUpdateMG.Name = "tsmUpdateMG";
-            this.tsmUpdateMG.Size = new System.Drawing.Size(112, 22);
+            this.tsmUpdateMG.Size = new System.Drawing.Size(180, 22);
             this.tsmUpdateMG.Text = "Update";
             // 
             // tsmDeleteMG
             // 
             this.tsmDeleteMG.Name = "tsmDeleteMG";
-            this.tsmDeleteMG.Size = new System.Drawing.Size(112, 22);
+            this.tsmDeleteMG.Size = new System.Drawing.Size(180, 22);
             this.tsmDeleteMG.Text = "Delete";
             // 
             // tsmExercise
@@ -154,7 +154,7 @@
             this.gbAddUpdateDelete.Controls.Add(this.cbUpdateDelete);
             this.gbAddUpdateDelete.Controls.Add(this.label1);
             this.gbAddUpdateDelete.Controls.Add(this.txtAddMuscleOrExercise);
-            this.gbAddUpdateDelete.Controls.Add(this.btntest1);
+            this.gbAddUpdateDelete.Controls.Add(this.btnAddUpdate);
             this.gbAddUpdateDelete.Location = new System.Drawing.Point(42, 151);
             this.gbAddUpdateDelete.Name = "gbAddUpdateDelete";
             this.gbAddUpdateDelete.Size = new System.Drawing.Size(409, 240);
@@ -187,19 +187,18 @@
             this.txtAddMuscleOrExercise.Size = new System.Drawing.Size(211, 23);
             this.txtAddMuscleOrExercise.TabIndex = 2;
             // 
-            // btntest1
+            // btnAddUpdate
             // 
-            this.btntest1.Location = new System.Drawing.Point(185, 163);
-            this.btntest1.Name = "btntest1";
-            this.btntest1.Size = new System.Drawing.Size(190, 71);
-            this.btntest1.TabIndex = 1;
-            this.btntest1.Text = "test1";
-            this.btntest1.UseVisualStyleBackColor = true;
-            this.btntest1.Click += new System.EventHandler(this.btntest1_Click);
+            this.btnAddUpdate.Location = new System.Drawing.Point(185, 163);
+            this.btnAddUpdate.Name = "btnAddUpdate";
+            this.btnAddUpdate.Size = new System.Drawing.Size(190, 71);
+            this.btnAddUpdate.TabIndex = 1;
+            this.btnAddUpdate.UseVisualStyleBackColor = true;
+            this.btnAddUpdate.Click += new System.EventHandler(this.btntest1_Click);
             // 
             // Main
             // 
-            this.AcceptButton = this.btntest1;
+            this.AcceptButton = this.btnAddUpdate;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
@@ -235,7 +234,7 @@
         private TextBox txtWelcome;
         private GroupBox gbAddUpdateDelete;
         private TextBox txtAddMuscleOrExercise;
-        private Button btntest1;
+        private Button btnAddUpdate;
         private Label label1;
         private ComboBox cbUpdateDelete;
     }
