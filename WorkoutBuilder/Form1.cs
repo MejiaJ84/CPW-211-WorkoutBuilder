@@ -60,6 +60,12 @@ namespace WorkoutBuilder
             
         }
 
+        private void tsmWorkoutBuilder_Click(object sender, EventArgs e)
+        {
+            AddWorkoutsOfDay AddWorkoutsOfDayForm = new AddWorkoutsOfDay();
+            AddWorkoutsOfDayForm.ShowDialog();
+        }
+
         // TODO:
         // Exercise: add, update and delete functionality
         // Muscle Group: update and delete functionality 
