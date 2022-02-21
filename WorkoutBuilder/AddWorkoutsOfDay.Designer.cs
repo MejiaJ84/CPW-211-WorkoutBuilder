@@ -33,7 +33,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cbx_days = new System.Windows.Forms.ComboBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -66,7 +66,6 @@
             this.label3.Size = new System.Drawing.Size(41, 20);
             this.label3.TabIndex = 2;
             this.label3.Text = "Reps";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label4
             // 
@@ -85,13 +84,13 @@
             this.comboBox1.Size = new System.Drawing.Size(151, 28);
             this.comboBox1.TabIndex = 4;
             // 
-            // comboBox2
+            // cbx_days
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(236, 138);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(151, 28);
-            this.comboBox2.TabIndex = 5;
+            this.cbx_days.FormattingEnabled = true;
+            this.cbx_days.Location = new System.Drawing.Point(236, 138);
+            this.cbx_days.Name = "cbx_days";
+            this.cbx_days.Size = new System.Drawing.Size(151, 28);
+            this.cbx_days.TabIndex = 5;
             // 
             // textBox1
             // 
@@ -134,7 +133,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.cbx_days);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -142,6 +141,7 @@
             this.Controls.Add(this.label1);
             this.Name = "AddWorkoutsOfDay";
             this.Text = "Add Workouts to the Days of the Week";
+            this.Load += new System.EventHandler(this.AddWorkoutsOfDay_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -154,7 +154,7 @@
         private Label label3;
         private Label label4;
         private ComboBox comboBox1;
-        private ComboBox comboBox2;
+        private ComboBox cbx_days;
         private TextBox textBox1;
         private TextBox textBox2;
         private Button button1;

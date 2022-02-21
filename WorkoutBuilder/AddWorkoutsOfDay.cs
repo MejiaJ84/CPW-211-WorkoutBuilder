@@ -17,9 +17,19 @@ namespace WorkoutBuilder
             InitializeComponent();
         }
 
-        private void label3_Click(object sender, EventArgs e)
-        {
+        string[] days = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
 
+        private void AddWorkoutsOfDay_Load(object sender, EventArgs e)
+        {
+            InitializeComboBoxDays();
+        }
+
+        private void InitializeComboBoxDays()
+        {
+            foreach (string day in days)
+            {
+                cbx_days.Items.Add(day);
+            }
         }
     }
 }
