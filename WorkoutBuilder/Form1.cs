@@ -1,3 +1,4 @@
+using System.Data;
 using WorkoutBuilder.Data;
 using WorkoutBuilder.Model;
 
@@ -17,10 +18,26 @@ namespace WorkoutBuilder
 
         private void btntest1_Click(object sender, EventArgs e)
         {
-            if (gbAddUpdateDelete.Tag.Equals("AddMG"))
+            if (AreInputFieldsValid())
             {
-                AddMuscleGroup(txtAddMuscleOrExercise.Text);
-                txtAddMuscleOrExercise.Clear();
+                if (gbAddUpdateDelete.Tag.Equals("AddMG"))
+                {
+                    AddMuscleGroup(txtAddMuscleOrExercise.Text);
+                    MessageBox.Show("Muscle Group Added Successfully");
+                    txtAddMuscleOrExercise.Clear();
+                }
+
+                if (gbAddUpdateDelete.Tag.Equals("UpdateMG"))
+                {
+                    if (cbUpdateDelete.SelectedIndex > 0 && IsPresent(txtAddMuscleOrExercise))
+                    {
+                        UpdateMuscleGroup(cbUpdateDelete.SelectedItem.ToString());
+                        MessageBox.Show("Update Successful!");
+                        txtAddMuscleOrExercise.Clear();
+                    }
+                    MessageBox.Show("Please select a Muscle Group to update");
+
+                }
             }
         }
 
@@ -40,11 +57,12 @@ namespace WorkoutBuilder
 
         private void tsmUpdateMG_Click(object sender, EventArgs e)
         {
-            using WorkoutBuilderContext context = new();
+            WorkoutBuilderContext context = new();
             SetGroupBox("Update Muscle Groups", "Select a Muscle Group to Update", "UpdateMG", "Update");
             MakeGroupBoxVisible();
             List<WorkoutPart> workoutParts = context.WorkoutParts.ToList();
             FillMuscleGroupComboBox(workoutParts);
+            DefaultListItem();
             MakeComboBoxVisible();
         }
 
@@ -53,7 +71,7 @@ namespace WorkoutBuilder
         /// to the muscle group table in the database.
         /// </summary>
         /// <param name="muscleGroupToAdd">The group box text box</param>
-        public void AddMuscleGroup(string muscleGroupToAdd)
+        private void AddMuscleGroup(string muscleGroupToAdd)
         {
             WorkoutBuilderContext context = new();
             WorkoutPart muscleGroup = new()
@@ -61,6 +79,20 @@ namespace WorkoutBuilder
                 MuscleGroup = muscleGroupToAdd
             };
             context.WorkoutParts.Add(muscleGroup);
+            context.SaveChanges();
+        }
+
+        /// <summary>
+        /// Searches the workouts part table for data matching
+        /// the string passed in and updates it with the value from
+        /// the text box
+        /// </summary>
+        /// <param name="updatedMuscleGroup"> The value obtained from the combo box</param>
+        private void UpdateMuscleGroup(string updatedMuscleGroup)
+        {
+            WorkoutBuilderContext context = new();
+            WorkoutPart workoutParts = context.WorkoutParts.Single(muscle => muscle.MuscleGroup == updatedMuscleGroup);
+            workoutParts.MuscleGroup = txtAddMuscleOrExercise.Text;
             context.SaveChanges();
         }
 
@@ -96,12 +128,68 @@ namespace WorkoutBuilder
             cbUpdateDelete.Visible = true;
         }
 
+        /// <summary>
+        /// Fills the muscle group combo box
+        /// with the appropriate data from the database
+        /// </summary>
+        /// <param name="list">list of muscle groups from the database</param>
         private void FillMuscleGroupComboBox(List<WorkoutPart> list)
         {
             foreach (WorkoutPart musclegroup in list)
             {
                 cbUpdateDelete.Items.Add(musclegroup.MuscleGroup);
             }
+        }
+
+        /// <summary>
+        /// Sets the combo box to
+        /// the specified default text on initial load
+        /// </summary>
+        /// <param name="defaultText"></param>
+        private void DefaultListItem()
+        {
+            cbUpdateDelete.SelectedIndex = 0;
+        }
+
+        private static bool IsPresent(TextBox box)
+        {
+            if (string.IsNullOrWhiteSpace(box.Text)) // checks to see if text box is empty or filled with spaces(whitespace)
+            {
+                return false;
+            }
+            return true; // Implicit else
+        }
+
+        /// <summary>
+        /// Checks if all user input fields have valid inputs
+        /// </summary>
+        /// <returns></returns> True if all fields have valid input
+        private bool AreInputFieldsValid()
+        {
+            bool isDataValid = true;
+            if (!IsPresent(txtAddMuscleOrExercise))
+            {
+                ShowError("Please enter data");
+                isDataValid = false;
+            }
+
+            // TODO: add validation to check if item isnt already in database when adding and if item is in database when updating.
+
+            return isDataValid;
+        }
+
+        /// <summary>
+        /// When an input is invalid this method pops up an error box
+        /// </summary>
+        /// <param name="errMsg"></param>
+        private void ShowError(string errMsg)
+        {
+            MessageBox.Show(errMsg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void cbUpdateDelete_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
 
 
