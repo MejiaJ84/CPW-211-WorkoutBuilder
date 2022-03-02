@@ -55,6 +55,14 @@ namespace WorkoutBuilder
             MakeGroupBoxVisible();
         }
 
+        /// <summary>
+        /// If Update Muscle Group is clicked
+        /// Change the text values of the group box items, 
+        /// Adds a tag to the group box for the button conditions,
+        /// and make the Group Box and combo box visible.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tsmUpdateMG_Click(object sender, EventArgs e)
         {
             WorkoutBuilderContext context = new();
@@ -151,6 +159,11 @@ namespace WorkoutBuilder
             cbUpdateDelete.SelectedIndex = 0;
         }
 
+        /// <summary>
+        /// Checks to see if there is data in the text box
+        /// </summary>
+        /// <param name="box"></param>
+        /// <returns></returns>
         private static bool IsPresent(TextBox box)
         {
             if (string.IsNullOrWhiteSpace(box.Text)) // checks to see if text box is empty or filled with spaces(whitespace)
