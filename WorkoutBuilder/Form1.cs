@@ -23,6 +23,12 @@ namespace WorkoutBuilder
 
         private CurrentMuscleGroupOperation _currentOp;
 
+        /// <summary>
+        /// Adds, updates, or deletes muscle groups/exercises depending on which menu item 
+        /// was selected.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btntest1_Click(object sender, EventArgs e)
         {
             if (AreInputFieldsValid())
@@ -40,13 +46,11 @@ namespace WorkoutBuilder
                     {
                         MessageBox.Show("Please select a Muscle Group to update");
                     }
-                    
                     WorkoutPart workoutPartToUpdate = cbUpdateDelete.SelectedItem as WorkoutPart;
                     workoutPartToUpdate.MuscleGroup = txtAddMuscleOrExercise.Text;
                     UpdateMuscleGroup(workoutPartToUpdate);
                     MessageBox.Show("Update Successful!");
                     txtAddMuscleOrExercise.Clear();
-
                 }
             }
         }
