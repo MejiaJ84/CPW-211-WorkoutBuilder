@@ -36,21 +36,28 @@ namespace WorkoutBuilder
                 if (_currentOp == CurrentMuscleGroupOperation.AddMuscleGroup)
                 {
                     AddMuscleGroup(txtAddMuscleOrExercise.Text);
-                    MessageBox.Show("Muscle Group Added Successfully");
+                    MessageBox.Show($"{txtAddMuscleOrExercise.Text} added successfully");
                     txtAddMuscleOrExercise.Clear();
                 }
 
                 if (_currentOp == CurrentMuscleGroupOperation.UpdateMuscleGroup)
                 {
-                    if (cbUpdateDelete.SelectedIndex > 0 && !IsPresent(txtAddMuscleOrExercise))
-                    {
-                        MessageBox.Show("Please select a Muscle Group to update");
-                    }
                     WorkoutPart workoutPartToUpdate = cbUpdateDelete.SelectedItem as WorkoutPart;
                     workoutPartToUpdate.MuscleGroup = txtAddMuscleOrExercise.Text;
                     UpdateMuscleGroup(workoutPartToUpdate);
-                    MessageBox.Show("Update Successful!");
+                    MessageBox.Show($"{workoutPartToUpdate.MuscleGroup} updated successfully!");
                     txtAddMuscleOrExercise.Clear();
+                }
+
+                if (_currentOp == CurrentMuscleGroupOperation.DeleteMuscleGroup)
+                {
+                    WorkoutPart workoutPartToDelete = cbUpdateDelete.SelectedItem as WorkoutPart;
+                    DialogResult confirmation = MessageBox.Show($"Are you sure you want to delete {workoutPartToDelete.MuscleGroup}?", "Confirm", MessageBoxButtons.YesNo);
+                    if (confirmation == DialogResult.Yes)
+                    {
+                        DeleteMuscleGroup(workoutPartToDelete);
+                        MessageBox.Show($"{workoutPartToDelete.MuscleGroup} has been deleted.");
+                    }
                 }
             }
         }
@@ -66,8 +73,9 @@ namespace WorkoutBuilder
         private void tsmAddmuscleGroup_Click(object sender, EventArgs e)
         {
             _currentOp = CurrentMuscleGroupOperation.AddMuscleGroup;
-            SetGroupBox("Add Muscle Group", "Enter Muscle Group to add to the database.", "Add to Muscle Groups");
-            MakeGroupBoxVisible();
+            SetGroupBox("Add", "Enter Muscle Group to add to the database.", "Add to Muscle Groups");
+            MakeInvisible(cbUpdateDelete);
+            MakeVisible(gbAddUpdateDelete);
         }
 
         /// <summary>
@@ -82,12 +90,23 @@ namespace WorkoutBuilder
         {
             _currentOp = CurrentMuscleGroupOperation.UpdateMuscleGroup;
             WorkoutBuilderContext context = new();
-            SetGroupBox("Update Muscle Groups", "Select a Muscle Group to Update", "Update");
-            MakeGroupBoxVisible();
             List<WorkoutPart> workoutParts = context.WorkoutParts.ToList();
-            FillMuscleGroupComboBox(workoutParts);
-            DefaultListItem();
-            MakeComboBoxVisible();
+            SetGroupBox("Update", "Select a Muscle Group to Update", "Update");
+            FillUpdateDeleteComboBox(workoutParts);
+            MakeVisible(cbUpdateDelete);
+            MakeVisible(gbAddUpdateDelete);
+        }
+
+        private void tsmDeleteMG_Click(object sender, EventArgs e)
+        {
+            _currentOp = CurrentMuscleGroupOperation.DeleteMuscleGroup;
+            WorkoutBuilderContext context = new();
+            List<WorkoutPart> workoutParts = context.WorkoutParts.ToList();
+            FillUpdateDeleteComboBox(workoutParts);
+            SetGroupBox("Delete", "Select a Muscle Group to Delete", "Delete");
+            MakeInvisible(txtAddMuscleOrExercise);
+            MakeVisible(cbUpdateDelete);
+            MakeVisible(gbAddUpdateDelete);
         }
 
         /// <summary>
@@ -116,7 +135,18 @@ namespace WorkoutBuilder
         {
             WorkoutBuilderContext context = new();
             context.Update(updatedMuscleGroup);
-            //workoutParts.MuscleGroup = txtAddMuscleOrExercise.Text;
+            context.SaveChanges();
+        }
+
+        /// <summary>
+        /// Deletes the muscle group the user selected
+        /// from the combo box, from the database
+        /// </summary>
+        /// <param name="workoutPartToDelete"></param>
+        private void DeleteMuscleGroup(WorkoutPart workoutPartToDelete)
+        {
+            WorkoutBuilderContext context = new();
+            context.Remove(workoutPartToDelete);
             context.SaveChanges();
         }
 
@@ -135,46 +165,37 @@ namespace WorkoutBuilder
             btnAddUpdate.Text = btnText;
         }
 
-        /// <summary>
-        /// Makes the Group box visible
-        /// </summary>
-        private void MakeGroupBoxVisible()
-        {
-            gbAddUpdateDelete.Visible=true;
-        }
-
-        /// <summary>
-        /// Makes the combo box visible
-        /// </summary>
-        private void MakeComboBoxVisible()
-        {
-            cbUpdateDelete.Visible = true;
-        }
 
         /// <summary>
         /// Fills the muscle group combo box
         /// with the appropriate data from the database
         /// </summary>
         /// <param name="list">list of muscle groups from the database</param>
-        private void FillMuscleGroupComboBox(List<WorkoutPart> list)
+        private void FillUpdateDeleteComboBox(List<WorkoutPart> list)
         {
             cbUpdateDelete.DataSource = list;
             cbUpdateDelete.DisplayMember = nameof(WorkoutPart.MuscleGroup);
             cbUpdateDelete.ValueMember = nameof(WorkoutPart.WorkoutPartID);
         }
 
-        /// <summary>
-        /// Sets the combo box to
-        /// the specified default text on initial load
-        /// </summary>
-        /// <param name="defaultText"></param>
-        private void DefaultListItem()
+        private void MakeVisible(Control makeVisible)
         {
-            cbUpdateDelete.SelectedIndex = 0;
+            makeVisible.Visible = true;
+        }
+
+
+        /// <summary>
+        /// When a menu item is selected where the text box is 
+        /// no longer needed, make it invisible.
+        /// </summary>
+        private void MakeInvisible(Control makeIinvisible)
+        {
+            makeIinvisible.Visible = false;
         }
 
         /// <summary>
         /// Checks to see if there is data in the text box
+        /// to send to the database
         /// </summary>
         /// <param name="box"></param>
         /// <returns></returns>
@@ -194,15 +215,39 @@ namespace WorkoutBuilder
         private bool AreInputFieldsValid()
         {
             bool isDataValid = true;
-            if (!IsPresent(txtAddMuscleOrExercise))
+
+            if (_currentOp == CurrentMuscleGroupOperation.AddMuscleGroup || _currentOp == CurrentMuscleGroupOperation.AddExercise)
             {
-                ShowError("Please enter data");
-                isDataValid = false;
+                if ( !IsPresent(txtAddMuscleOrExercise) )
+                {
+                    ShowError("Please enter data.");
+                    isDataValid = false;
+                }
             }
 
-            // TODO: add validation to check if item isnt already in database when adding and if item is in database when updating.
-
+            if (_currentOp == CurrentMuscleGroupOperation.UpdateMuscleGroup)
+            {
+                if ( !IsPresent(txtAddMuscleOrExercise) )
+                {
+                    ShowError("Please enter updated data.");
+                    isDataValid = false;
+                }
+                
+                if (cbUpdateDelete.SelectedIndex < 0)
+                {
+                    ShowError("Please make you selection from the drop down menu.");
+                    isDataValid = false;
+                }
+                
+            }
+                
             return isDataValid;
+       
+                        
+
+            // TODO: add validation to check if item isnt already in database when adding and if item is in database when updating/deleting.
+
+            
         }
 
         /// <summary>
@@ -218,6 +263,8 @@ namespace WorkoutBuilder
         {
 
         }
+
+        
 
 
         // TODO:
