@@ -75,22 +75,23 @@
             // tsmAddmuscleGroup
             // 
             this.tsmAddmuscleGroup.Name = "tsmAddmuscleGroup";
-            this.tsmAddmuscleGroup.Size = new System.Drawing.Size(112, 22);
+            this.tsmAddmuscleGroup.Size = new System.Drawing.Size(180, 22);
             this.tsmAddmuscleGroup.Text = "Add ";
             this.tsmAddmuscleGroup.Click += new System.EventHandler(this.tsmAddmuscleGroup_Click);
             // 
             // tsmUpdateMG
             // 
             this.tsmUpdateMG.Name = "tsmUpdateMG";
-            this.tsmUpdateMG.Size = new System.Drawing.Size(112, 22);
+            this.tsmUpdateMG.Size = new System.Drawing.Size(180, 22);
             this.tsmUpdateMG.Text = "Update";
             this.tsmUpdateMG.Click += new System.EventHandler(this.tsmUpdateMG_Click);
             // 
             // tsmDeleteMG
             // 
             this.tsmDeleteMG.Name = "tsmDeleteMG";
-            this.tsmDeleteMG.Size = new System.Drawing.Size(112, 22);
+            this.tsmDeleteMG.Size = new System.Drawing.Size(180, 22);
             this.tsmDeleteMG.Text = "Delete";
+            this.tsmDeleteMG.Click += new System.EventHandler(this.tsmDeleteMG_Click);
             // 
             // tsmExercise
             // 
