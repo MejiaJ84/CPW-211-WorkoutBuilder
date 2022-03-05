@@ -36,13 +36,16 @@ namespace WorkoutBuilder
 
                 if (_currentOp == CurrentMuscleGroupOperation.UpdateMuscleGroup)
                 {
-                    if (cbUpdateDelete.SelectedIndex > 0 && IsPresent(txtAddMuscleOrExercise))
+                    if (cbUpdateDelete.SelectedIndex > 0 && !IsPresent(txtAddMuscleOrExercise))
                     {
-                        UpdateMuscleGroup(cbUpdateDelete.SelectedItem.ToString());
-                        MessageBox.Show("Update Successful!");
-                        txtAddMuscleOrExercise.Clear();
+                        MessageBox.Show("Please select a Muscle Group to update");
                     }
-                    MessageBox.Show("Please select a Muscle Group to update");
+                    
+                    WorkoutPart workoutPartToUpdate = cbUpdateDelete.SelectedItem as WorkoutPart;
+                    workoutPartToUpdate.MuscleGroup = txtAddMuscleOrExercise.Text;
+                    UpdateMuscleGroup(workoutPartToUpdate);
+                    MessageBox.Show("Update Successful!");
+                    txtAddMuscleOrExercise.Clear();
 
                 }
             }
@@ -105,11 +108,11 @@ namespace WorkoutBuilder
         /// the text box
         /// </summary>
         /// <param name="updatedMuscleGroup"> The value obtained from the combo box</param>
-        private void UpdateMuscleGroup(string updatedMuscleGroup)
+        private void UpdateMuscleGroup(WorkoutPart updatedMuscleGroup)
         {
             WorkoutBuilderContext context = new();
-            WorkoutPart workoutParts = context.WorkoutParts.Single(muscle => muscle.MuscleGroup == updatedMuscleGroup);
-            workoutParts.MuscleGroup = txtAddMuscleOrExercise.Text;
+            context.Update(updatedMuscleGroup);
+            //workoutParts.MuscleGroup = txtAddMuscleOrExercise.Text;
             context.SaveChanges();
         }
 
