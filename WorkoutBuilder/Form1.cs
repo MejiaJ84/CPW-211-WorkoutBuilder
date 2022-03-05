@@ -16,18 +16,25 @@ namespace WorkoutBuilder
             
         }
 
+        enum CurrentMuscleGroupOperation
+        {
+            AddMuscleGroup, UpdateMuscleGroup, DeleteMuscleGroup, AddExercise, UpdateExercise, DeleteExercise, None
+        }
+
+        private CurrentMuscleGroupOperation _currentOp;
+
         private void btntest1_Click(object sender, EventArgs e)
         {
             if (AreInputFieldsValid())
             {
-                if (gbAddUpdateDelete.Tag.Equals("AddMG"))
+                if (_currentOp == CurrentMuscleGroupOperation.AddMuscleGroup)
                 {
                     AddMuscleGroup(txtAddMuscleOrExercise.Text);
                     MessageBox.Show("Muscle Group Added Successfully");
                     txtAddMuscleOrExercise.Clear();
                 }
 
-                if (gbAddUpdateDelete.Tag.Equals("UpdateMG"))
+                if (_currentOp == CurrentMuscleGroupOperation.UpdateMuscleGroup)
                 {
                     if (cbUpdateDelete.SelectedIndex > 0 && IsPresent(txtAddMuscleOrExercise))
                     {
@@ -51,7 +58,8 @@ namespace WorkoutBuilder
         /// <param name="e"></param>
         private void tsmAddmuscleGroup_Click(object sender, EventArgs e)
         {
-            SetGroupBox("Add Muscle Group", "Enter Muscle Group to add to the database.", "AddMG", "Add to Muscle Groups");
+            _currentOp = CurrentMuscleGroupOperation.AddMuscleGroup;
+            SetGroupBox("Add Muscle Group", "Enter Muscle Group to add to the database.", "Add to Muscle Groups");
             MakeGroupBoxVisible();
         }
 
@@ -65,8 +73,9 @@ namespace WorkoutBuilder
         /// <param name="e"></param>
         private void tsmUpdateMG_Click(object sender, EventArgs e)
         {
+            _currentOp = CurrentMuscleGroupOperation.UpdateMuscleGroup;
             WorkoutBuilderContext context = new();
-            SetGroupBox("Update Muscle Groups", "Select a Muscle Group to Update", "UpdateMG", "Update");
+            SetGroupBox("Update Muscle Groups", "Select a Muscle Group to Update", "Update");
             MakeGroupBoxVisible();
             List<WorkoutPart> workoutParts = context.WorkoutParts.ToList();
             FillMuscleGroupComboBox(workoutParts);
@@ -112,11 +121,10 @@ namespace WorkoutBuilder
         /// <param name="lblText">Value the label is to display</param>
         /// <param name="grpBoxTag">the string the tag is to hold</param>
         /// <param name="btnText">Value the button is to display</param>
-        private void SetGroupBox(string grpBoxText, string lblText, string grpBoxTag, string btnText)
+        private void SetGroupBox(string grpBoxText, string lblText, string btnText)
         {
             gbAddUpdateDelete.Text = grpBoxText;
             label1.Text = lblText;
-            gbAddUpdateDelete.Tag = grpBoxTag;
             btnAddUpdate.Text = btnText;
         }
 
@@ -143,10 +151,9 @@ namespace WorkoutBuilder
         /// <param name="list">list of muscle groups from the database</param>
         private void FillMuscleGroupComboBox(List<WorkoutPart> list)
         {
-            foreach (WorkoutPart musclegroup in list)
-            {
-                cbUpdateDelete.Items.Add(musclegroup.MuscleGroup);
-            }
+            cbUpdateDelete.DataSource = list;
+            cbUpdateDelete.DisplayMember = nameof(WorkoutPart.MuscleGroup);
+            cbUpdateDelete.ValueMember = nameof(WorkoutPart.WorkoutPartID);
         }
 
         /// <summary>
