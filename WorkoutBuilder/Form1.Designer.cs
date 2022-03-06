@@ -35,15 +35,13 @@
             this.tsmDeleteMG = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmExercise = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmAddExercise = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.UpdateExercise = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmDeleteExercise = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmWorkoutBuilder = new System.Windows.Forms.ToolStripMenuItem();
             this.txtWelcome = new System.Windows.Forms.TextBox();
             this.gbAddUpdateDelete = new System.Windows.Forms.GroupBox();
             this.cbUpdateDelete = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblInstructions = new System.Windows.Forms.Label();
             this.txtAddMuscleOrExercise = new System.Windows.Forms.TextBox();
             this.btnAddUpdate = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
@@ -75,21 +73,21 @@
             // tsmAddmuscleGroup
             // 
             this.tsmAddmuscleGroup.Name = "tsmAddmuscleGroup";
-            this.tsmAddmuscleGroup.Size = new System.Drawing.Size(180, 22);
+            this.tsmAddmuscleGroup.Size = new System.Drawing.Size(112, 22);
             this.tsmAddmuscleGroup.Text = "Add ";
             this.tsmAddmuscleGroup.Click += new System.EventHandler(this.tsmAddmuscleGroup_Click);
             // 
             // tsmUpdateMG
             // 
             this.tsmUpdateMG.Name = "tsmUpdateMG";
-            this.tsmUpdateMG.Size = new System.Drawing.Size(180, 22);
+            this.tsmUpdateMG.Size = new System.Drawing.Size(112, 22);
             this.tsmUpdateMG.Text = "Update";
             this.tsmUpdateMG.Click += new System.EventHandler(this.tsmUpdateMG_Click);
             // 
             // tsmDeleteMG
             // 
             this.tsmDeleteMG.Name = "tsmDeleteMG";
-            this.tsmDeleteMG.Size = new System.Drawing.Size(180, 22);
+            this.tsmDeleteMG.Size = new System.Drawing.Size(112, 22);
             this.tsmDeleteMG.Text = "Delete";
             this.tsmDeleteMG.Click += new System.EventHandler(this.tsmDeleteMG_Click);
             // 
@@ -97,9 +95,7 @@
             // 
             this.tsmExercise.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmAddExercise,
-            this.toolStripSeparator3,
             this.UpdateExercise,
-            this.toolStripSeparator4,
             this.tsmDeleteExercise});
             this.tsmExercise.Name = "tsmExercise";
             this.tsmExercise.Size = new System.Drawing.Size(61, 20);
@@ -110,22 +106,13 @@
             this.tsmAddExercise.Name = "tsmAddExercise";
             this.tsmAddExercise.Size = new System.Drawing.Size(112, 22);
             this.tsmAddExercise.Text = "Add";
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(109, 6);
+            this.tsmAddExercise.Click += new System.EventHandler(this.tsmAddExercise_Click);
             // 
             // UpdateExercise
             // 
             this.UpdateExercise.Name = "UpdateExercise";
             this.UpdateExercise.Size = new System.Drawing.Size(112, 22);
             this.UpdateExercise.Text = "Update";
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(109, 6);
             // 
             // tsmDeleteExercise
             // 
@@ -154,12 +141,12 @@
             // gbAddUpdateDelete
             // 
             this.gbAddUpdateDelete.Controls.Add(this.cbUpdateDelete);
-            this.gbAddUpdateDelete.Controls.Add(this.label1);
+            this.gbAddUpdateDelete.Controls.Add(this.lblInstructions);
             this.gbAddUpdateDelete.Controls.Add(this.txtAddMuscleOrExercise);
             this.gbAddUpdateDelete.Controls.Add(this.btnAddUpdate);
             this.gbAddUpdateDelete.Location = new System.Drawing.Point(42, 151);
             this.gbAddUpdateDelete.Name = "gbAddUpdateDelete";
-            this.gbAddUpdateDelete.Size = new System.Drawing.Size(409, 240);
+            this.gbAddUpdateDelete.Size = new System.Drawing.Size(514, 240);
             this.gbAddUpdateDelete.TabIndex = 12;
             this.gbAddUpdateDelete.TabStop = false;
             this.gbAddUpdateDelete.Visible = false;
@@ -174,14 +161,14 @@
             this.cbUpdateDelete.Visible = false;
             this.cbUpdateDelete.SelectedIndexChanged += new System.EventHandler(this.cbUpdateDelete_SelectedIndexChanged);
             // 
-            // label1
+            // lblInstructions
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(35, 35);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 15);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "label1";
+            this.lblInstructions.AutoSize = true;
+            this.lblInstructions.Location = new System.Drawing.Point(35, 35);
+            this.lblInstructions.Name = "lblInstructions";
+            this.lblInstructions.Size = new System.Drawing.Size(38, 15);
+            this.lblInstructions.TabIndex = 3;
+            this.lblInstructions.Text = "label1\r\n";
             // 
             // txtAddMuscleOrExercise
             // 
@@ -229,16 +216,14 @@
         private ToolStripMenuItem tsmDeleteMG;
         private ToolStripMenuItem tsmExercise;
         private ToolStripMenuItem tsmAddExercise;
-        private ToolStripSeparator toolStripSeparator3;
         private ToolStripMenuItem UpdateExercise;
-        private ToolStripSeparator toolStripSeparator4;
         private ToolStripMenuItem tsmDeleteExercise;
         private ToolStripMenuItem tsmWorkoutBuilder;
         private TextBox txtWelcome;
         private GroupBox gbAddUpdateDelete;
         private TextBox txtAddMuscleOrExercise;
         private Button btnAddUpdate;
-        private Label label1;
+        private Label lblInstructions;
         private ComboBox cbUpdateDelete;
     }
 }
