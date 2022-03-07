@@ -35,17 +35,15 @@ namespace WorkoutBuilder
             {
                 if (_currentOp == CurrentWorkoutBuilderOperation.AddMuscleGroup)
                 {
-                    AddMuscleGroup(txtAddMuscleOrExercise.Text);
+                    AddMuscleGroup();
                     MessageBox.Show($"{txtAddMuscleOrExercise.Text} added successfully!", "Success", MessageBoxButtons.OK);
                     txtAddMuscleOrExercise.Clear();
                 }
 
                 if (_currentOp == CurrentWorkoutBuilderOperation.UpdateMuscleGroup)
-                {
-                    WorkoutPart workoutPartToUpdate = cbUpdateDelete.SelectedItem as WorkoutPart;
-                    workoutPartToUpdate.MuscleGroup = txtAddMuscleOrExercise.Text;
-                    UpdateMuscleGroup(workoutPartToUpdate);
-                    MessageBox.Show($"{workoutPartToUpdate.MuscleGroup} updated successfully!");
+                { 
+                    UpdateMuscleGroup();
+                    MessageBox.Show($"{txtAddMuscleOrExercise.Text} updated successfully!");
                     txtAddMuscleOrExercise.Clear();
                 }
 
@@ -62,9 +60,16 @@ namespace WorkoutBuilder
 
                 if (_currentOp == CurrentWorkoutBuilderOperation.AddExercise)
                 {
-                    WorkoutPart exerciseBelongsToThisMuscleGroup = cbUpdateDelete.SelectedItem as WorkoutPart;
-                    AddExercise(txtAddMuscleOrExercise.Text, exerciseBelongsToThisMuscleGroup, rtxtExerciseDescription.Text);
+                    AddExercise();
                     MessageBox.Show($"{txtAddMuscleOrExercise.Text} added successfully!", "Success", MessageBoxButtons.OK);
+                    txtAddMuscleOrExercise.Clear();
+                    rtxtExerciseDescription.Clear();
+                }
+
+                if (_currentOp == CurrentWorkoutBuilderOperation.UpdateExercise)
+                {
+                    UpdateExercise();
+                    MessageBox.Show($"{txtAddMuscleOrExercise.Text} Updated successfully!", "Success", MessageBoxButtons.OK);
                     txtAddMuscleOrExercise.Clear();
                     rtxtExerciseDescription.Clear();
                 }
@@ -75,8 +80,8 @@ namespace WorkoutBuilder
         /// If Add Muscle Group is clicked
         /// Change the text values of the group box items, 
         /// Sets the CurrentWorkoutBuilder operation for the button conditions,
-        /// and make the Group Box and text box visible
-        /// and make the combo box invisible.         
+        /// and makes the needed Controls visible while
+        /// making unneeded ones invisible.         
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -86,6 +91,8 @@ namespace WorkoutBuilder
             SetGroupBox("Add", "Enter Muscle Group you want to add.", "Add Muscle Groups");
             MakeInvisible(cbUpdateDelete);
             MakeInvisible(rtxtExerciseDescription);
+            MakeInvisible(cbUpdateDeleteExercise);
+            MakeInvisible(lblExerciseDescription);
             MakeVisible(gbAddUpdateDelete);
             MakeVisible(txtAddMuscleOrExercise);
         }
@@ -94,8 +101,8 @@ namespace WorkoutBuilder
         /// If Update Muscle Group is clicked
         /// Change the text values of the group box items, 
         /// Sets the CurrentWorkoutBuilder operation for the button conditions,
-        /// and make the Group Box and combo box visible
-        /// and make the text box invisible.
+        /// and makes the needed Controls visible while
+        /// making unneeded ones invisible.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -107,6 +114,8 @@ namespace WorkoutBuilder
             SetGroupBox("Update", "Select a Muscle Group to Update", "Update");
             FillUpdateDeleteComboBox(workoutParts);
             MakeInvisible(rtxtExerciseDescription);
+            MakeInvisible(cbUpdateDeleteExercise);
+            MakeInvisible(lblExerciseDescription);
             MakeVisible(cbUpdateDelete);
             MakeVisible(gbAddUpdateDelete);
             MakeVisible(txtAddMuscleOrExercise);
@@ -116,8 +125,8 @@ namespace WorkoutBuilder
         /// If Update Muscle Group is clicked
         /// Change the text values of the group box items, 
         /// Sets the CurrentWorkoutBuilder operation for the button conditions,
-        /// make the Group Box and combo box visible
-        /// and the text box invisible.
+        /// and makes the needed Controls visible while
+        /// making unneeded ones invisible.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -130,6 +139,8 @@ namespace WorkoutBuilder
             SetGroupBox("Delete", "Select a Muscle Group to Delete", "Delete");
             MakeInvisible(txtAddMuscleOrExercise);
             MakeInvisible(rtxtExerciseDescription);
+            MakeInvisible(cbUpdateDeleteExercise);
+            MakeInvisible(lblExerciseDescription);
             MakeVisible(cbUpdateDelete);
             MakeVisible(gbAddUpdateDelete);
         }
@@ -138,7 +149,8 @@ namespace WorkoutBuilder
         /// If Add Muscle Group is clicked
         /// Change the text values of the group box items, 
         /// Sets the CurrentWorkoutBuilder operation for the button conditions,
-        /// make the Group Box, text box and the combo box visible.
+        /// and makes the needed Controls visible while
+        /// making unneeded ones invisible.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -149,7 +161,33 @@ namespace WorkoutBuilder
             WorkoutBuilderContext context = new();
             List<WorkoutPart> workoutParts = context.WorkoutParts.ToList();
             FillUpdateDeleteComboBox(workoutParts);
+            MakeInvisible(cbUpdateDeleteExercise);
             MakeVisible(cbUpdateDelete);
+            MakeVisible(rtxtExerciseDescription);
+            MakeVisible(lblExerciseDescription);
+            MakeVisible(gbAddUpdateDelete);
+        }
+
+        /// <summary>
+        /// If Update Exercise is clicked
+        /// Change the text values of the group box items, 
+        /// Sets the CurrentWorkoutBuilder operation for the button conditions,
+        /// and makes the needed Controls visible while
+        /// making unneeded ones invisible.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tsmUpdateExercise_Click(object sender, EventArgs e)
+        {
+            _currentOp = CurrentWorkoutBuilderOperation.UpdateExercise;
+            SetGroupBox("Update", "Select an exercise you wish to update and its corresponding muscle group.", "Update Exercise");
+            WorkoutBuilderContext context = new();
+            List<Workout> exercises = context.Workouts.ToList();
+            List<WorkoutPart> workoutParts = context.WorkoutParts.ToList();
+            FillUpdateDeleteExerciseComboBox(exercises);
+            FillUpdateDeleteComboBox(workoutParts);
+            MakeInvisible(cbUpdateDelete);
+            MakeVisible(cbUpdateDeleteExercise);
             MakeVisible(gbAddUpdateDelete);
             MakeVisible(rtxtExerciseDescription);
             MakeVisible(lblExerciseDescription);
@@ -160,12 +198,12 @@ namespace WorkoutBuilder
         /// to the muscle group table in the database.
         /// </summary>
         /// <param name="muscleGroupToAdd">The group box text box</param>
-        private void AddMuscleGroup(string muscleGroupToAdd)
+        private void AddMuscleGroup()
         {
             WorkoutBuilderContext context = new();
             WorkoutPart muscleGroup = new()
             {
-                MuscleGroup = muscleGroupToAdd
+                MuscleGroup = txtAddMuscleOrExercise.Text
             };
             context.WorkoutParts.Add(muscleGroup);
             context.SaveChanges();
@@ -177,10 +215,12 @@ namespace WorkoutBuilder
         /// the text box
         /// </summary>
         /// <param name="updatedMuscleGroup"> The value obtained from the combo box</param>
-        private void UpdateMuscleGroup(WorkoutPart updatedMuscleGroup)
+        private void UpdateMuscleGroup()
         {
             WorkoutBuilderContext context = new();
-            context.Update(updatedMuscleGroup);
+            WorkoutPart workoutPartToUpdate = cbUpdateDelete.SelectedItem as WorkoutPart;
+            workoutPartToUpdate.MuscleGroup = txtAddMuscleOrExercise.Text;
+            context.Update(workoutPartToUpdate);
             context.SaveChanges();
         }
 
@@ -204,18 +244,33 @@ namespace WorkoutBuilder
         /// <param name="exerciseToAdd"></param>
         /// <param name="exerciseBelongsToThisMuscleGroup"></param>
         /// <param name="exerciseDescription"></param>
-        private void AddExercise(string exerciseToAdd, WorkoutPart exerciseBelongsToThisMuscleGroup, string exerciseDescription)
+        private void AddExercise()
         {
             WorkoutBuilderContext context = new();
-            //int workoutPartId = exerciseBelongsToThisMuscleGroup.WorkoutPartID;
+            WorkoutPart exerciseBelongsToThisMuscleGroup = cbUpdateDelete.SelectedItem as WorkoutPart;
             Workout exercise = new()
             {
-                WorkoutName = exerciseToAdd,
+                WorkoutName = txtAddMuscleOrExercise.Text,
                 WorkoutPartID = exerciseBelongsToThisMuscleGroup.WorkoutPartID,
-                WorkoutDescription = exerciseDescription
+                WorkoutDescription = rtxtExerciseDescription.Text
             };
             
             context.Workouts.Add(exercise);
+            context.SaveChanges();
+        }
+
+        /// <summary>
+        /// Adds the values from the text box
+        /// and from the rich text box to the corresponding
+        /// columns in the workout table
+        /// </summary>
+        private void UpdateExercise()
+        {
+            WorkoutBuilderContext context = new();
+            Workout updatedExercise = cbUpdateDeleteExercise.SelectedItem as Workout;
+            updatedExercise.WorkoutName = txtAddMuscleOrExercise.Text;
+            updatedExercise.WorkoutDescription = rtxtExerciseDescription.Text;
+            context.Update(updatedExercise);
             context.SaveChanges();
         }
 
@@ -235,6 +290,19 @@ namespace WorkoutBuilder
         }
 
         /// <summary>
+        /// Fills the exercise combo box
+        /// with the appropriate data from the database
+        /// </summary>
+        /// <param name="list"></param>
+        private void FillUpdateDeleteExerciseComboBox(List<Workout> list)
+        {
+            cbUpdateDeleteExercise.DataSource = list;
+            cbUpdateDeleteExercise.DisplayMember = nameof(Workout.WorkoutName);
+            cbUpdateDeleteExercise.ValueMember = nameof(Workout.WorkoutID);
+
+        }
+
+        /// <summary>
         /// Fills the muscle group combo box
         /// with the appropriate data from the database
         /// </summary>
@@ -244,6 +312,17 @@ namespace WorkoutBuilder
             cbUpdateDelete.DataSource = list;
             cbUpdateDelete.DisplayMember = nameof(WorkoutPart.MuscleGroup);
             cbUpdateDelete.ValueMember = nameof(WorkoutPart.WorkoutPartID);
+        }
+
+        /// <summary>
+        /// Fills exercise description box with data
+        /// from the database in case the user doesn't 
+        /// want to change the description
+        /// </summary>
+        private void FillExerciseDescriptionBox()
+        {
+            Workout exercise = cbUpdateDeleteExercise.SelectedItem as Workout;
+            rtxtExerciseDescription.Text = exercise.WorkoutDescription;
         }
 
         /// <summary>
@@ -271,7 +350,7 @@ namespace WorkoutBuilder
         /// </summary>
         /// <param name="box"></param>
         /// <returns></returns>
-        private static bool IsPresent(TextBox box)
+        private static bool IsPresent(Control box)
         {
             if (string.IsNullOrWhiteSpace(box.Text)) // checks to see if text box is empty or filled with spaces(whitespace)
             {
@@ -288,38 +367,52 @@ namespace WorkoutBuilder
         {
             bool isDataValid = true;
 
-            if (_currentOp == CurrentWorkoutBuilderOperation.AddMuscleGroup || _currentOp == CurrentWorkoutBuilderOperation.AddExercise)
+            if (_currentOp == CurrentWorkoutBuilderOperation.AddMuscleGroup)
             {
-                if ( !IsPresent(txtAddMuscleOrExercise) )
+                if ( !IsPresent(txtAddMuscleOrExercise))
                 {
-                    ShowError("Please enter data.");
+                    ShowError("Please enter a muscle group.");
                     isDataValid = false;
                 }
             }
 
             if (_currentOp == CurrentWorkoutBuilderOperation.UpdateMuscleGroup)
             {
-                if ( !IsPresent(txtAddMuscleOrExercise) )
+                if (!IsPresent(txtAddMuscleOrExercise))
                 {
                     ShowError("Please enter updated data.");
                     isDataValid = false;
                 }
-                
-                if (cbUpdateDelete.SelectedIndex < 0)
+            }
+
+            if (_currentOp == CurrentWorkoutBuilderOperation.AddExercise)
+            {
+                if (!IsPresent(txtAddMuscleOrExercise))
                 {
-                    ShowError("Please make you selection from the drop down menu.");
+                    ShowError("Please enter an exercise.");
                     isDataValid = false;
                 }
-                
+
+                if (!IsPresent(rtxtExerciseDescription))
+                {
+                    
+                    ShowError("Please enter a description.");
+                    isDataValid = false;
+                    
+                }
             }
-                
+
+            if (_currentOp == CurrentWorkoutBuilderOperation.UpdateExercise)
+            {
+
+                if (!IsPresent(rtxtExerciseDescription) || !IsPresent(txtAddMuscleOrExercise))
+                {
+                    ShowError("Please enter updated data.");
+                    isDataValid = false;
+                }
+            }
             return isDataValid;
-       
-                        
-
             // TODO: add validation to check if item isnt already in database when adding and if item is in database when updating/deleting.
-
-            
         }
 
         /// <summary>
@@ -331,12 +424,14 @@ namespace WorkoutBuilder
             MessageBox.Show(errMsg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        private void cbUpdateDelete_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbUpdateDeleteExercise_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            FillExerciseDescriptionBox();
         }
 
-        
+
+
+
 
 
 
