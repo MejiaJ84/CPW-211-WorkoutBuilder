@@ -16,5 +16,18 @@ namespace WorkoutBuilder
         {
             InitializeComponent();
         }
+
+        private void btn_AddWorkout_Click(object sender, EventArgs e)
+        {
+            AddWorkoutsOfDay addWorkoutForm = new AddWorkoutsOfDay();
+            addWorkoutForm.ShowDialog();
+
+            populateWorkouts();
+        }
+
+        private void populateWorkouts()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
