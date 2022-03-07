@@ -35,7 +35,7 @@
             this.lbl_Wednesday = new System.Windows.Forms.Label();
             this.lbx_Wednesday = new System.Windows.Forms.ListBox();
             this.lbl_Thursday = new System.Windows.Forms.Label();
-            this.lbx_Thrusday = new System.Windows.Forms.ListBox();
+            this.lbx_Thursday = new System.Windows.Forms.ListBox();
             this.lbl_Friday = new System.Windows.Forms.Label();
             this.lbx_Friday = new System.Windows.Forms.ListBox();
             this.lbl_Saturday = new System.Windows.Forms.Label();
@@ -110,14 +110,14 @@
             this.lbl_Thursday.TabIndex = 13;
             this.lbl_Thursday.Text = "Thursday";
             // 
-            // lbx_Thrusday
+            // lbx_Thursday
             // 
-            this.lbx_Thrusday.FormattingEnabled = true;
-            this.lbx_Thrusday.ItemHeight = 20;
-            this.lbx_Thrusday.Location = new System.Drawing.Point(577, 132);
-            this.lbx_Thrusday.Name = "lbx_Thrusday";
-            this.lbx_Thrusday.Size = new System.Drawing.Size(179, 384);
-            this.lbx_Thrusday.TabIndex = 12;
+            this.lbx_Thursday.FormattingEnabled = true;
+            this.lbx_Thursday.ItemHeight = 20;
+            this.lbx_Thursday.Location = new System.Drawing.Point(577, 132);
+            this.lbx_Thursday.Name = "lbx_Thursday";
+            this.lbx_Thursday.Size = new System.Drawing.Size(179, 384);
+            this.lbx_Thursday.TabIndex = 12;
             // 
             // lbl_Friday
             // 
@@ -216,7 +216,7 @@
             this.Controls.Add(this.lbl_Friday);
             this.Controls.Add(this.lbx_Friday);
             this.Controls.Add(this.lbl_Thursday);
-            this.Controls.Add(this.lbx_Thrusday);
+            this.Controls.Add(this.lbx_Thursday);
             this.Controls.Add(this.lbl_Wednesday);
             this.Controls.Add(this.lbx_Wednesday);
             this.Controls.Add(this.lbl_Tuesday);
@@ -239,7 +239,7 @@
         private Label lbl_Wednesday;
         private ListBox lbx_Wednesday;
         private Label lbl_Thursday;
-        private ListBox lbx_Thrusday;
+        private ListBox lbx_Thursday;
         private Label lbl_Friday;
         private ListBox lbx_Friday;
         private Label lbl_Saturday;
