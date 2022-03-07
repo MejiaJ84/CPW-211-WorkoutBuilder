@@ -63,9 +63,10 @@ namespace WorkoutBuilder
                 if (_currentOp == CurrentWorkoutBuilderOperation.AddExercise)
                 {
                     WorkoutPart exerciseBelongsToThisMuscleGroup = cbUpdateDelete.SelectedItem as WorkoutPart;
-                    AddExercise(txtAddMuscleOrExercise.Text, exerciseBelongsToThisMuscleGroup);
+                    AddExercise(txtAddMuscleOrExercise.Text, exerciseBelongsToThisMuscleGroup, rtxtExerciseDescription.Text);
                     MessageBox.Show($"{txtAddMuscleOrExercise.Text} added successfully!", "Success", MessageBoxButtons.OK);
                     txtAddMuscleOrExercise.Clear();
+                    rtxtExerciseDescription.Clear();
                 }
             }
         }
@@ -73,8 +74,9 @@ namespace WorkoutBuilder
         /// <summary>
         /// If Add Muscle Group is clicked
         /// Change the text values of the group box items, 
-        /// Adds a tag to the group box for the button conditions,
-        /// and make the Group Box visible.         
+        /// Sets the CurrentWorkoutBuilder operation for the button conditions,
+        /// and make the Group Box and text box visible
+        /// and make the combo box invisible.         
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -83,6 +85,7 @@ namespace WorkoutBuilder
             _currentOp = CurrentWorkoutBuilderOperation.AddMuscleGroup;
             SetGroupBox("Add", "Enter Muscle Group you want to add.", "Add Muscle Groups");
             MakeInvisible(cbUpdateDelete);
+            MakeInvisible(rtxtExerciseDescription);
             MakeVisible(gbAddUpdateDelete);
             MakeVisible(txtAddMuscleOrExercise);
         }
@@ -90,8 +93,9 @@ namespace WorkoutBuilder
         /// <summary>
         /// If Update Muscle Group is clicked
         /// Change the text values of the group box items, 
-        /// Adds a tag to the group box for the button conditions,
-        /// and make the Group Box and combo box visible.
+        /// Sets the CurrentWorkoutBuilder operation for the button conditions,
+        /// and make the Group Box and combo box visible
+        /// and make the text box invisible.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -102,11 +106,21 @@ namespace WorkoutBuilder
             List<WorkoutPart> workoutParts = context.WorkoutParts.ToList();
             SetGroupBox("Update", "Select a Muscle Group to Update", "Update");
             FillUpdateDeleteComboBox(workoutParts);
+            MakeInvisible(rtxtExerciseDescription);
             MakeVisible(cbUpdateDelete);
             MakeVisible(gbAddUpdateDelete);
             MakeVisible(txtAddMuscleOrExercise);
         }
 
+        /// <summary>
+        /// If Update Muscle Group is clicked
+        /// Change the text values of the group box items, 
+        /// Sets the CurrentWorkoutBuilder operation for the button conditions,
+        /// make the Group Box and combo box visible
+        /// and the text box invisible.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tsmDeleteMG_Click(object sender, EventArgs e)
         {
             _currentOp = CurrentWorkoutBuilderOperation.DeleteMuscleGroup;
@@ -115,8 +129,30 @@ namespace WorkoutBuilder
             FillUpdateDeleteComboBox(workoutParts);
             SetGroupBox("Delete", "Select a Muscle Group to Delete", "Delete");
             MakeInvisible(txtAddMuscleOrExercise);
+            MakeInvisible(rtxtExerciseDescription);
             MakeVisible(cbUpdateDelete);
             MakeVisible(gbAddUpdateDelete);
+        }
+
+        /// <summary>
+        /// If Add Muscle Group is clicked
+        /// Change the text values of the group box items, 
+        /// Sets the CurrentWorkoutBuilder operation for the button conditions,
+        /// make the Group Box, text box and the combo box visible.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tsmAddExercise_Click(object sender, EventArgs e)
+        {
+            _currentOp = CurrentWorkoutBuilderOperation.AddExercise;
+            SetGroupBox("Add", "Enter Exercise you want to add and select the muscle group it belongs to.", "Add Exercise");
+            WorkoutBuilderContext context = new();
+            List<WorkoutPart> workoutParts = context.WorkoutParts.ToList();
+            FillUpdateDeleteComboBox(workoutParts);
+            MakeVisible(cbUpdateDelete);
+            MakeVisible(gbAddUpdateDelete);
+            MakeVisible(rtxtExerciseDescription);
+            MakeVisible(lblExerciseDescription);
         }
 
         /// <summary>
@@ -160,27 +196,19 @@ namespace WorkoutBuilder
             context.SaveChanges();
         }
 
-        private void AddExercise(string exerciseToAdd, WorkoutPart exerciseBelongsToThisMuscleGroup)
+        private void AddExercise(string exerciseToAdd, WorkoutPart exerciseBelongsToThisMuscleGroup, string exerciseDescription)
         {
             WorkoutBuilderContext context = new();
-            int workoutPartId = exerciseBelongsToThisMuscleGroup.WorkoutPartID;
+            //int workoutPartId = exerciseBelongsToThisMuscleGroup.WorkoutPartID;
             Workout exercise = new()
             {
                 WorkoutName = exerciseToAdd,
-                WorkoutPartID = workoutPartId,
-                WorkoutPart = exerciseBelongsToThisMuscleGroup
+                WorkoutDescription = exerciseDescription
             };
-        }
-
-        private void tsmAddExercise_Click(object sender, EventArgs e)
-        {
-            _currentOp = CurrentWorkoutBuilderOperation.AddExercise;
-            SetGroupBox("Add", "Enter Exercise you want to add and select the muscle group it belongs to.", "Add Exercise");
-            WorkoutBuilderContext context = new();
-            List<WorkoutPart> workoutParts = context.WorkoutParts.ToList();
-            FillUpdateDeleteComboBox(workoutParts);
-            MakeVisible(cbUpdateDelete);
-            MakeVisible(gbAddUpdateDelete);
+            exercise.WorkoutPartID = exerciseBelongsToThisMuscleGroup;
+            exercise.WorkoutPart = exerciseBelongsToThisMuscleGroup;
+            context.Workouts.Add(exercise);
+            context.SaveChanges();
         }
 
         /// <summary>
