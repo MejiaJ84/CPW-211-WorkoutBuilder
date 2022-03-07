@@ -22,5 +22,10 @@ namespace WorkoutBuilder.Model
         public string WorkoutDescription { get; set; }
 
         public List<WorkoutOfDay> WorkoutOfDay { get; set; }
+
+        public override string ToString()
+        {
+            return WorkoutName;
+        }
     }
 }
