@@ -73,6 +73,17 @@ namespace WorkoutBuilder
                     txtAddMuscleOrExercise.Clear();
                     rtxtExerciseDescription.Clear();
                 }
+
+                if (_currentOp == CurrentWorkoutBuilderOperation.DeleteExercise)
+                {
+                    Workout workoutToDelete = cbUpdateDeleteExercise.SelectedItem as Workout;
+                    DialogResult confirmation = MessageBox.Show($"Are you sure you want to delete {workoutToDelete.WorkoutName}?", "Confirm", MessageBoxButtons.YesNo);
+                    if (confirmation == DialogResult.Yes)
+                    {
+                        DeleteExercise(workoutToDelete);
+                        MessageBox.Show($"{workoutToDelete.WorkoutName} has been deleted.");
+                    }
+                }
             }
         }
 
@@ -122,7 +133,7 @@ namespace WorkoutBuilder
         }
 
         /// <summary>
-        /// If Update Muscle Group is clicked
+        /// If Delete Muscle Group is clicked
         /// Change the text values of the group box items, 
         /// Sets the CurrentWorkoutBuilder operation for the button conditions,
         /// and makes the needed Controls visible while
@@ -191,6 +202,29 @@ namespace WorkoutBuilder
             MakeVisible(gbAddUpdateDelete);
             MakeVisible(rtxtExerciseDescription);
             MakeVisible(lblExerciseDescription);
+        }
+
+        /// <summary>
+        /// If Delete Muscle Group is clicked
+        /// Change the text values of the group box items, 
+        /// Sets the CurrentWorkoutBuilder operation for the button conditions,
+        /// and makes the needed Controls visible while
+        /// making unneeded ones invisible.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tsmDeleteExercise_Click(object sender, EventArgs e)
+        {
+            _currentOp = CurrentWorkoutBuilderOperation.DeleteExercise;
+            SetGroupBox("Delete", "Select an exercise you wish to delete", "Delete Exercise");
+            WorkoutBuilderContext context = new();
+            List<Workout> workouts = context.Workouts.ToList();
+            FillUpdateDeleteExerciseComboBox(workouts);
+            MakeInvisible(txtAddMuscleOrExercise);
+            MakeInvisible(rtxtExerciseDescription);
+            MakeInvisible(lblExerciseDescription);
+            MakeVisible(cbUpdateDeleteExercise);
+            MakeVisible(gbAddUpdateDelete);
         }
 
         /// <summary>
@@ -271,6 +305,13 @@ namespace WorkoutBuilder
             updatedExercise.WorkoutName = txtAddMuscleOrExercise.Text;
             updatedExercise.WorkoutDescription = rtxtExerciseDescription.Text;
             context.Update(updatedExercise);
+            context.SaveChanges();
+        }
+
+        private void DeleteExercise(Workout workoutToDelete)
+        {
+            WorkoutBuilderContext context = new();
+            context.Remove(workoutToDelete);
             context.SaveChanges();
         }
 
@@ -428,6 +469,8 @@ namespace WorkoutBuilder
         {
             FillExerciseDescriptionBox();
         }
+
+        
 
 
 
