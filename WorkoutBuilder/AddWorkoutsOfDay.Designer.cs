@@ -36,8 +36,8 @@
             this.cbx_days = new System.Windows.Forms.ComboBox();
             this.txt_Sets = new System.Windows.Forms.TextBox();
             this.txt_Reps = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btn_Add = new System.Windows.Forms.Button();
+            this.btn_Close = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lbl_Workout
@@ -78,6 +78,7 @@
             // 
             // cbx_Workout
             // 
+            this.cbx_Workout.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_Workout.FormattingEnabled = true;
             this.cbx_Workout.Location = new System.Drawing.Point(236, 82);
             this.cbx_Workout.Name = "cbx_Workout";
@@ -86,6 +87,7 @@
             // 
             // cbx_days
             // 
+            this.cbx_days.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_days.FormattingEnabled = true;
             this.cbx_days.Location = new System.Drawing.Point(236, 138);
             this.cbx_days.Name = "cbx_days";
@@ -106,31 +108,32 @@
             this.txt_Reps.Size = new System.Drawing.Size(151, 27);
             this.txt_Reps.TabIndex = 7;
             // 
-            // button1
+            // btn_Add
             // 
-            this.button1.Location = new System.Drawing.Point(109, 368);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(94, 29);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "Add";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btn_Add.Location = new System.Drawing.Point(109, 368);
+            this.btn_Add.Name = "btn_Add";
+            this.btn_Add.Size = new System.Drawing.Size(94, 29);
+            this.btn_Add.TabIndex = 8;
+            this.btn_Add.Text = "Add";
+            this.btn_Add.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btn_Close
             // 
-            this.button2.Location = new System.Drawing.Point(245, 368);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(94, 29);
-            this.button2.TabIndex = 9;
-            this.button2.Text = "Close";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btn_Close.Location = new System.Drawing.Point(245, 368);
+            this.btn_Close.Name = "btn_Close";
+            this.btn_Close.Size = new System.Drawing.Size(94, 29);
+            this.btn_Close.TabIndex = 9;
+            this.btn_Close.Text = "Close";
+            this.btn_Close.UseVisualStyleBackColor = true;
+            this.btn_Close.Click += new System.EventHandler(this.btn_Close_Click);
             // 
             // AddWorkoutsOfDay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(457, 470);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btn_Close);
+            this.Controls.Add(this.btn_Add);
             this.Controls.Add(this.txt_Reps);
             this.Controls.Add(this.txt_Sets);
             this.Controls.Add(this.cbx_days);
@@ -157,7 +160,7 @@
         private ComboBox cbx_days;
         private TextBox txt_Sets;
         private TextBox txt_Reps;
-        private Button button1;
-        private Button button2;
+        private Button btn_Add;
+        private Button btn_Close;
     }
 }

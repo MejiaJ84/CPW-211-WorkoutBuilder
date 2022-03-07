@@ -46,5 +46,34 @@ namespace WorkoutBuilder
                 cbx_days.Items.Add(day);
             }
         }
+
+        private void btn_Close_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private bool isValid()
+        {
+            if (cbx_Workout.SelectedIndex == 0)
+            {
+                MessageBox.Show("Please Select Workout", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            if(cbx_days.SelectedIndex == 0)
+            {
+                MessageBox.Show("Please Select Day", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            if(txt_Reps.Text == null || txt_Sets.Text == null || 
+                Convert.ToInt32(txt_Reps.Text) <= 0 || Convert.ToInt32(txt_Sets.Text) <= 0)
+            {
+                MessageBox.Show("Please Enter number greater than 0", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            return true;
+        }
     }
 }
