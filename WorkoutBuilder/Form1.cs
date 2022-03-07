@@ -203,10 +203,10 @@ namespace WorkoutBuilder
             Workout exercise = new()
             {
                 WorkoutName = exerciseToAdd,
+                WorkoutPartID = exerciseBelongsToThisMuscleGroup.WorkoutPartID,
                 WorkoutDescription = exerciseDescription
             };
-            exercise.WorkoutPartID = exerciseBelongsToThisMuscleGroup;
-            exercise.WorkoutPart = exerciseBelongsToThisMuscleGroup;
+            
             context.Workouts.Add(exercise);
             context.SaveChanges();
         }

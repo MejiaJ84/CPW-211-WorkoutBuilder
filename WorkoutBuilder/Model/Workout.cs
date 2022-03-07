@@ -15,13 +15,12 @@ namespace WorkoutBuilder.Model
         [Required]
         public string WorkoutName { get; set; }
 
-        
         public int WorkoutPartID { get; set; } // FK for workout part table
         
-        public WorkoutPart WorkoutPart { get; set; }
-
         public string WorkoutDescription { get; set; }
 
         public List<WorkoutOfDay> WorkoutOfDay { get; set; }
+
+        public WorkoutPart WorkoutPart { get; set; }
     }
 }
