@@ -196,6 +196,14 @@ namespace WorkoutBuilder
             context.SaveChanges();
         }
 
+        /// <summary>
+        /// Adds the values from the text box
+        /// and from the combo box to the corresponding
+        /// columns in the workout table
+        /// </summary>
+        /// <param name="exerciseToAdd"></param>
+        /// <param name="exerciseBelongsToThisMuscleGroup"></param>
+        /// <param name="exerciseDescription"></param>
         private void AddExercise(string exerciseToAdd, WorkoutPart exerciseBelongsToThisMuscleGroup, string exerciseDescription)
         {
             WorkoutBuilderContext context = new();
@@ -238,13 +246,18 @@ namespace WorkoutBuilder
             cbUpdateDelete.ValueMember = nameof(WorkoutPart.WorkoutPartID);
         }
 
+        /// <summary>
+        /// When a menu item is selected where the Control is 
+        /// needed, make it visible.
+        /// </summary>
+        /// <param name="makeVisible"></param>
         private void MakeVisible(Control makeVisible)
         {
             makeVisible.Visible = true;
         }
 
         /// <summary>
-        /// When a menu item is selected where the text box is 
+        /// When a menu item is selected where the Control is 
         /// no longer needed, make it invisible.
         /// </summary>
         private void MakeInvisible(Control makeIinvisible)
