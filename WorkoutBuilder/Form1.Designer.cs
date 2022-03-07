@@ -107,22 +107,23 @@
             // tsmAddExercise
             // 
             this.tsmAddExercise.Name = "tsmAddExercise";
-            this.tsmAddExercise.Size = new System.Drawing.Size(112, 22);
+            this.tsmAddExercise.Size = new System.Drawing.Size(180, 22);
             this.tsmAddExercise.Text = "Add";
             this.tsmAddExercise.Click += new System.EventHandler(this.tsmAddExercise_Click);
             // 
             // tsmUpdateExercise
             // 
             this.tsmUpdateExercise.Name = "tsmUpdateExercise";
-            this.tsmUpdateExercise.Size = new System.Drawing.Size(112, 22);
+            this.tsmUpdateExercise.Size = new System.Drawing.Size(180, 22);
             this.tsmUpdateExercise.Text = "Update";
             this.tsmUpdateExercise.Click += new System.EventHandler(this.tsmUpdateExercise_Click);
             // 
             // tsmDeleteExercise
             // 
             this.tsmDeleteExercise.Name = "tsmDeleteExercise";
-            this.tsmDeleteExercise.Size = new System.Drawing.Size(112, 22);
+            this.tsmDeleteExercise.Size = new System.Drawing.Size(180, 22);
             this.tsmDeleteExercise.Text = "Delete";
+            this.tsmDeleteExercise.Click += new System.EventHandler(this.tsmDeleteExercise_Click);
             // 
             // tsmWorkoutBuilder
             // 
@@ -199,7 +200,6 @@
             this.cbUpdateDelete.Size = new System.Drawing.Size(211, 23);
             this.cbUpdateDelete.TabIndex = 4;
             this.cbUpdateDelete.Visible = false;
-            
             // 
             // lblInstructions
             // 
