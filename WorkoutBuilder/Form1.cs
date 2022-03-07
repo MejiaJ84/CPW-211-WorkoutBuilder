@@ -35,7 +35,8 @@ namespace WorkoutBuilder
             {
                 if (_currentOp == CurrentWorkoutBuilderOperation.AddMuscleGroup)
                 {
-                    AddMuscleGroup();
+
+                    WorkoutDBHelper.AddMuscleGroup(txtAddMuscleOrExercise.Text);
                     MessageBox.Show($"{txtAddMuscleOrExercise.Text} added successfully!", "Success", MessageBoxButtons.OK);
                     txtAddMuscleOrExercise.Clear();
                 }
@@ -227,21 +228,8 @@ namespace WorkoutBuilder
             MakeVisible(gbAddUpdateDelete);
         }
 
-        /// <summary>
-        /// Adds the value from the group text box
-        /// to the muscle group table in the database.
-        /// </summary>
-        /// <param name="muscleGroupToAdd">The group box text box</param>
-        private void AddMuscleGroup()
-        {
-            WorkoutBuilderContext context = new();
-            WorkoutPart muscleGroup = new()
-            {
-                MuscleGroup = txtAddMuscleOrExercise.Text
-            };
-            context.WorkoutParts.Add(muscleGroup);
-            context.SaveChanges();
-        }
+        
+        
 
         /// <summary>
         /// Searches the workouts part table for data matching
