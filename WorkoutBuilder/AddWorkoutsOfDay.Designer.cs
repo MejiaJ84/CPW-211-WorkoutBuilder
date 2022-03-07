@@ -28,61 +28,61 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.lbl_Workout = new System.Windows.Forms.Label();
+            this.lbl_DayOfWeek = new System.Windows.Forms.Label();
+            this.lbl_Reps = new System.Windows.Forms.Label();
+            this.lbl_Sets = new System.Windows.Forms.Label();
+            this.cbx_Workout = new System.Windows.Forms.ComboBox();
             this.cbx_days = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txt_Sets = new System.Windows.Forms.TextBox();
+            this.txt_Reps = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // label1
+            // lbl_Workout
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(90, 82);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(68, 20);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Workout";
+            this.lbl_Workout.AutoSize = true;
+            this.lbl_Workout.Location = new System.Drawing.Point(90, 82);
+            this.lbl_Workout.Name = "lbl_Workout";
+            this.lbl_Workout.Size = new System.Drawing.Size(68, 20);
+            this.lbl_Workout.TabIndex = 0;
+            this.lbl_Workout.Text = "Workout";
             // 
-            // label2
+            // lbl_DayOfWeek
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(90, 138);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(97, 20);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Day of Week";
+            this.lbl_DayOfWeek.AutoSize = true;
+            this.lbl_DayOfWeek.Location = new System.Drawing.Point(90, 138);
+            this.lbl_DayOfWeek.Name = "lbl_DayOfWeek";
+            this.lbl_DayOfWeek.Size = new System.Drawing.Size(97, 20);
+            this.lbl_DayOfWeek.TabIndex = 1;
+            this.lbl_DayOfWeek.Text = "Day of Week";
             // 
-            // label3
+            // lbl_Reps
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(90, 274);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(41, 20);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Reps";
+            this.lbl_Reps.AutoSize = true;
+            this.lbl_Reps.Location = new System.Drawing.Point(90, 274);
+            this.lbl_Reps.Name = "lbl_Reps";
+            this.lbl_Reps.Size = new System.Drawing.Size(41, 20);
+            this.lbl_Reps.TabIndex = 2;
+            this.lbl_Reps.Text = "Reps";
             // 
-            // label4
+            // lbl_Sets
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(90, 207);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(36, 20);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Sets";
+            this.lbl_Sets.AutoSize = true;
+            this.lbl_Sets.Location = new System.Drawing.Point(90, 207);
+            this.lbl_Sets.Name = "lbl_Sets";
+            this.lbl_Sets.Size = new System.Drawing.Size(36, 20);
+            this.lbl_Sets.TabIndex = 3;
+            this.lbl_Sets.Text = "Sets";
             // 
-            // comboBox1
+            // cbx_Workout
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(236, 82);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(151, 28);
-            this.comboBox1.TabIndex = 4;
+            this.cbx_Workout.FormattingEnabled = true;
+            this.cbx_Workout.Location = new System.Drawing.Point(236, 82);
+            this.cbx_Workout.Name = "cbx_Workout";
+            this.cbx_Workout.Size = new System.Drawing.Size(151, 28);
+            this.cbx_Workout.TabIndex = 4;
             // 
             // cbx_days
             // 
@@ -92,19 +92,19 @@
             this.cbx_days.Size = new System.Drawing.Size(151, 28);
             this.cbx_days.TabIndex = 5;
             // 
-            // textBox1
+            // txt_Sets
             // 
-            this.textBox1.Location = new System.Drawing.Point(236, 207);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(151, 27);
-            this.textBox1.TabIndex = 6;
+            this.txt_Sets.Location = new System.Drawing.Point(236, 207);
+            this.txt_Sets.Name = "txt_Sets";
+            this.txt_Sets.Size = new System.Drawing.Size(151, 27);
+            this.txt_Sets.TabIndex = 6;
             // 
-            // textBox2
+            // txt_Reps
             // 
-            this.textBox2.Location = new System.Drawing.Point(236, 274);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(151, 27);
-            this.textBox2.TabIndex = 7;
+            this.txt_Reps.Location = new System.Drawing.Point(236, 274);
+            this.txt_Reps.Name = "txt_Reps";
+            this.txt_Reps.Size = new System.Drawing.Size(151, 27);
+            this.txt_Reps.TabIndex = 7;
             // 
             // button1
             // 
@@ -131,14 +131,14 @@
             this.ClientSize = new System.Drawing.Size(457, 470);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txt_Reps);
+            this.Controls.Add(this.txt_Sets);
             this.Controls.Add(this.cbx_days);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.cbx_Workout);
+            this.Controls.Add(this.lbl_Sets);
+            this.Controls.Add(this.lbl_Reps);
+            this.Controls.Add(this.lbl_DayOfWeek);
+            this.Controls.Add(this.lbl_Workout);
             this.Name = "AddWorkoutsOfDay";
             this.Text = "Add Workouts to the Days of the Week";
             this.Load += new System.EventHandler(this.AddWorkoutsOfDay_Load);
@@ -149,14 +149,14 @@
 
         #endregion
 
-        private Label label1;
-        private Label label2;
-        private Label label3;
-        private Label label4;
-        private ComboBox comboBox1;
+        private Label lbl_Workout;
+        private Label lbl_DayOfWeek;
+        private Label lbl_Reps;
+        private Label lbl_Sets;
+        private ComboBox cbx_Workout;
         private ComboBox cbx_days;
-        private TextBox textBox1;
-        private TextBox textBox2;
+        private TextBox txt_Sets;
+        private TextBox txt_Reps;
         private Button button1;
         private Button button2;
     }

@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WorkoutBuilder.Data;
+using WorkoutBuilder.Model;
 
 namespace WorkoutBuilder
 {
@@ -21,7 +23,20 @@ namespace WorkoutBuilder
 
         private void AddWorkoutsOfDay_Load(object sender, EventArgs e)
         {
+            InitializeCOmboBoxWorkout();
             InitializeComboBoxDays();
+        }
+
+        private void InitializeCOmboBoxWorkout()
+        {
+            using WorkoutBuilderContext dbContext = new();
+
+            List<Workout> allWorkouts = dbContext.Workouts.ToList();
+
+            foreach (Workout workout in allWorkouts)
+            {
+                cbx_Workout.Items.Add(workout);
+            }
         }
 
         private void InitializeComboBoxDays()
