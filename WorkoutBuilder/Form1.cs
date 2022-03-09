@@ -72,7 +72,11 @@ namespace WorkoutBuilder
 
                 if (_currentOp == CurrentWorkoutBuilderOperation.UpdateExercise)
                 {
-                    UpdateExercise();
+                    Workout exerciseToUpdate = cbUpdateDeleteExercise.SelectedItem as Workout;
+                    WorkoutPart updatedWorkoutPartId = cbUpdateDelete.SelectedItem as WorkoutPart;
+                    
+                    WorkoutDBHelper.UpdateExercise(exerciseToUpdate, updatedWorkoutPartId, txtAddMuscleOrExercise.Text, rtxtExerciseDescription.Text);
+                    
                     MessageBox.Show($"{txtAddMuscleOrExercise.Text} Updated successfully!", "Success", MessageBoxButtons.OK);
                     txtAddMuscleOrExercise.Clear();
                     rtxtExerciseDescription.Clear();
@@ -202,7 +206,7 @@ namespace WorkoutBuilder
             List<WorkoutPart> workoutParts = context.WorkoutParts.ToList();
             FillUpdateDeleteExerciseComboBox(exercises);
             FillUpdateDeleteComboBox(workoutParts);
-            MakeInvisible(cbUpdateDelete);
+            MakeVisible(cbUpdateDelete);
             MakeVisible(cbUpdateDeleteExercise);
             MakeVisible(gbAddUpdateDelete);
             MakeVisible(rtxtExerciseDescription);
@@ -230,24 +234,6 @@ namespace WorkoutBuilder
             MakeInvisible(lblExerciseDescription);
             MakeVisible(cbUpdateDeleteExercise);
             MakeVisible(gbAddUpdateDelete);
-        }
-
-
-        
-
-        /// <summary>
-        /// Adds the values from the text box
-        /// and from the rich text box to the corresponding
-        /// columns in the workout table
-        /// </summary>
-        private void UpdateExercise()
-        {
-            WorkoutBuilderContext context = new();
-            Workout updatedExercise = cbUpdateDeleteExercise.SelectedItem as Workout;
-            updatedExercise.WorkoutName = txtAddMuscleOrExercise.Text;
-            updatedExercise.WorkoutDescription = rtxtExerciseDescription.Text;
-            context.Update(updatedExercise);
-            context.SaveChanges();
         }
 
         /// <summary>
@@ -347,13 +333,11 @@ namespace WorkoutBuilder
             return true; // Implicit else
         }
 
-
         private void tsmWorkoutBuilder_Click(object sender, EventArgs e)
         {
             WorkoutBuilder workoutBuilderForm = new WorkoutBuilder();
             workoutBuilderForm.ShowDialog();
         }
-
 
         /// <summary>
         /// Checks if all user input fields have valid inputs

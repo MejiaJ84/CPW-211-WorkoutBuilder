@@ -77,5 +77,20 @@ namespace WorkoutBuilder
             context.SaveChanges();
         }
 
+        /// <summary>
+        /// Updates data with the values from the text box
+        /// and rich text box to the corresponding
+        /// columns in the workout table
+        /// </summary>
+        public static void UpdateExercise(Workout exerciseToUpdate, WorkoutPart updatedWorkoutPartId, string updatedExercise, string updatedDescription )
+        {
+            WorkoutBuilderContext context = new();
+            exerciseToUpdate.WorkoutName = updatedExercise;
+            exerciseToUpdate.WorkoutPartID = updatedWorkoutPartId.WorkoutPartID;
+            exerciseToUpdate.WorkoutDescription = updatedDescription;
+            context.Update(exerciseToUpdate);
+            context.SaveChanges();
+        }
+
     }
 }
