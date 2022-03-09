@@ -42,5 +42,17 @@ namespace WorkoutBuilder
             context.SaveChanges();
         }
 
+        /// <summary>
+        /// Deletes the muscle group the user selects
+        /// from the combo box, from the database
+        /// </summary>
+        /// <param name="workoutPartToDelete"></param>
+        public static void DeleteMuscleGroup(WorkoutPart workoutPartToDelete)
+        {
+            WorkoutBuilderContext context = new();
+            context.Remove(workoutPartToDelete);
+            context.SaveChanges();
+        }
+
     }
 }

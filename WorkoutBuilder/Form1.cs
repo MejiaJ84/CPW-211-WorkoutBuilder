@@ -35,7 +35,6 @@ namespace WorkoutBuilder
             {
                 if (_currentOp == CurrentWorkoutBuilderOperation.AddMuscleGroup)
                 {
-
                     WorkoutDBHelper.AddMuscleGroup(txtAddMuscleOrExercise.Text);
                     MessageBox.Show($"{txtAddMuscleOrExercise.Text} added successfully!", "Success", MessageBoxButtons.OK);
                     txtAddMuscleOrExercise.Clear();
@@ -56,7 +55,7 @@ namespace WorkoutBuilder
                     DialogResult confirmation = MessageBox.Show($"Are you sure you want to delete {workoutPartToDelete.MuscleGroup}?", "Confirm", MessageBoxButtons.YesNo);
                     if (confirmation == DialogResult.Yes)
                     {
-                        DeleteMuscleGroup(workoutPartToDelete);
+                        WorkoutDBHelper.DeleteMuscleGroup(workoutPartToDelete);
                         MessageBox.Show($"{workoutPartToDelete.MuscleGroup} has been deleted.");
                     }
                 }
@@ -231,22 +230,6 @@ namespace WorkoutBuilder
             MakeVisible(gbAddUpdateDelete);
         }
 
-        
-        
-
-        
-
-        /// <summary>
-        /// Deletes the muscle group the user selects
-        /// from the combo box, from the database
-        /// </summary>
-        /// <param name="workoutPartToDelete"></param>
-        private void DeleteMuscleGroup(WorkoutPart workoutPartToDelete)
-        {
-            WorkoutBuilderContext context = new();
-            context.Remove(workoutPartToDelete);
-            context.SaveChanges();
-        }
 
         /// <summary>
         /// Adds the values from the text box
@@ -472,7 +455,6 @@ namespace WorkoutBuilder
 
 
         // TODO:
-        // Exercise: add, update and delete functionality
         // Validation
         // Re-factor
     }
