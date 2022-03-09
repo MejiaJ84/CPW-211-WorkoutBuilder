@@ -227,6 +227,7 @@
             this.Controls.Add(this.lbx_Monday);
             this.Name = "WorkoutBuilder";
             this.Text = "WorkoutBuilder";
+            this.Load += new System.EventHandler(this.WorkoutBuilder_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

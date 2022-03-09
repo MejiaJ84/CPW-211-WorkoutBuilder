@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WorkoutBuilder.Data;
 
@@ -10,9 +11,10 @@ using WorkoutBuilder.Data;
 namespace WorkoutBuilder.Migrations
 {
     [DbContext(typeof(WorkoutBuilderContext))]
-    partial class WorkoutBuilderContextModelSnapshot : ModelSnapshot
+    [Migration("20220309092045_AddedworkoutOfDayID")]
+    partial class AddedworkoutOfDayID
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

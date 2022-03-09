@@ -110,5 +110,10 @@ namespace WorkoutBuilder
         {
             this.Close();
         }
+
+        private void WorkoutBuilder_Load(object sender, EventArgs e)
+        {
+            populateWorkouts();
+        }
     }
 }

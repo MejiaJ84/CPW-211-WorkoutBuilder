@@ -94,6 +94,8 @@ namespace WorkoutBuilder
 
                 dbContext.WorkoutOfDays.Add(workout);
                 dbContext.SaveChanges();
+
+                this.Close();
             }
         }
     }
