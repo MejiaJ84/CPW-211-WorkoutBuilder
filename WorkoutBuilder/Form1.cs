@@ -174,6 +174,7 @@ namespace WorkoutBuilder
             List<WorkoutPart> workoutParts = context.WorkoutParts.ToList();
             FillUpdateDeleteComboBox(workoutParts);
             MakeInvisible(cbUpdateDeleteExercise);
+            MakeVisible(txtAddMuscleOrExercise);
             MakeVisible(cbUpdateDelete);
             MakeVisible(rtxtExerciseDescription);
             MakeVisible(lblExerciseDescription);
