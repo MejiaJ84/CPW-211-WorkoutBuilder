@@ -42,8 +42,10 @@ namespace WorkoutBuilder
                 }
 
                 if (_currentOp == CurrentWorkoutBuilderOperation.UpdateMuscleGroup)
-                { 
-                    UpdateMuscleGroup();
+                {
+                    WorkoutPart workoutPartToUpdate = cbUpdateDelete.SelectedItem as WorkoutPart;
+                    WorkoutDBHelper.UpdateMuscleGroup(workoutPartToUpdate, txtAddMuscleOrExercise.Text);
+                    
                     MessageBox.Show($"{txtAddMuscleOrExercise.Text} updated successfully!");
                     txtAddMuscleOrExercise.Clear();
                 }
@@ -232,20 +234,7 @@ namespace WorkoutBuilder
         
         
 
-        /// <summary>
-        /// Searches the workouts part table for data matching
-        /// the string passed in and updates it with the value from
-        /// the text box
-        /// </summary>
-        /// <param name="updatedMuscleGroup"> The value obtained from the combo box</param>
-        private void UpdateMuscleGroup()
-        {
-            WorkoutBuilderContext context = new();
-            WorkoutPart workoutPartToUpdate = cbUpdateDelete.SelectedItem as WorkoutPart;
-            workoutPartToUpdate.MuscleGroup = txtAddMuscleOrExercise.Text;
-            context.Update(workoutPartToUpdate);
-            context.SaveChanges();
-        }
+        
 
         /// <summary>
         /// Deletes the muscle group the user selects

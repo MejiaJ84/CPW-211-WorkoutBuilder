@@ -27,5 +27,20 @@ namespace WorkoutBuilder
             context.WorkoutParts.Add(muscleGroup);
             context.SaveChanges();
         }
+
+        /// <summary>
+        /// Searches the workouts part table for data matching
+        /// the WorkoutPart object passed in and updates it with the value of
+        /// the string
+        /// </summary>
+        /// <param name="updatedMuscleGroup"> The value obtained from the combo box</param>
+        public static void UpdateMuscleGroup(WorkoutPart workoutPartToUdate, string updatedWorkoutPart)
+        {
+            WorkoutBuilderContext context = new();
+            workoutPartToUdate.MuscleGroup = updatedWorkoutPart;
+            context.Update(workoutPartToUdate);
+            context.SaveChanges();
+        }
+
     }
 }
