@@ -62,7 +62,9 @@ namespace WorkoutBuilder
 
                 if (_currentOp == CurrentWorkoutBuilderOperation.AddExercise)
                 {
-                    AddExercise();
+                    WorkoutPart exerciseBelongsToThisMuscleGroup = cbUpdateDelete.SelectedItem as WorkoutPart;
+                    WorkoutDBHelper.AddExercise(exerciseBelongsToThisMuscleGroup, txtAddMuscleOrExercise.Text, rtxtExerciseDescription.Text);
+                    
                     MessageBox.Show($"{txtAddMuscleOrExercise.Text} added successfully!", "Success", MessageBoxButtons.OK);
                     txtAddMuscleOrExercise.Clear();
                     rtxtExerciseDescription.Clear();
@@ -231,28 +233,7 @@ namespace WorkoutBuilder
         }
 
 
-        /// <summary>
-        /// Adds the values from the text box
-        /// and from the combo box to the corresponding
-        /// columns in the workout table
-        /// </summary>
-        /// <param name="exerciseToAdd"></param>
-        /// <param name="exerciseBelongsToThisMuscleGroup"></param>
-        /// <param name="exerciseDescription"></param>
-        private void AddExercise()
-        {
-            WorkoutBuilderContext context = new();
-            WorkoutPart exerciseBelongsToThisMuscleGroup = cbUpdateDelete.SelectedItem as WorkoutPart;
-            Workout exercise = new()
-            {
-                WorkoutName = txtAddMuscleOrExercise.Text,
-                WorkoutPartID = exerciseBelongsToThisMuscleGroup.WorkoutPartID,
-                WorkoutDescription = rtxtExerciseDescription.Text
-            };
-            
-            context.Workouts.Add(exercise);
-            context.SaveChanges();
-        }
+        
 
         /// <summary>
         /// Adds the values from the text box

@@ -54,5 +54,28 @@ namespace WorkoutBuilder
             context.SaveChanges();
         }
 
+        /// <summary>
+        /// Adds the values from the text box, rich text box
+        /// and from the combo box to the corresponding
+        /// columns in the workout table
+        /// </summary>
+        /// <param name="exerciseToAdd"></param>
+        /// <param name="exerciseBelongsToThisMuscleGroup"></param>
+        /// <param name="exerciseDescription"></param>
+        public static void AddExercise(WorkoutPart exerciseBelongsToThisMuscleGroup, string exerciseToAdd, string exerciseDescription)
+        {
+            WorkoutBuilderContext context = new();
+            
+            Workout exercise = new()
+            {
+                WorkoutName = exerciseToAdd,
+                WorkoutPartID = exerciseBelongsToThisMuscleGroup.WorkoutPartID,
+                WorkoutDescription = exerciseDescription
+            };
+
+            context.Workouts.Add(exercise);
+            context.SaveChanges();
+        }
+
     }
 }
