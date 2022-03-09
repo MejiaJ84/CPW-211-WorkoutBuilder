@@ -85,6 +85,7 @@ namespace WorkoutBuilder
         public static void UpdateExercise(Workout exerciseToUpdate, WorkoutPart updatedWorkoutPartId, string updatedExercise, string updatedDescription )
         {
             WorkoutBuilderContext context = new();
+            context.Attach(exerciseToUpdate);
             exerciseToUpdate.WorkoutName = updatedExercise;
             exerciseToUpdate.WorkoutPartID = updatedWorkoutPartId.WorkoutPartID;
             exerciseToUpdate.WorkoutDescription = updatedDescription;
