@@ -23,5 +23,10 @@ namespace WorkoutBuilder.Model
 
         [Range(0, int.MaxValue)]
         public int Reps { get; set; }
+
+        public override string ToString()
+        {
+            return Workout.ToString() + " " + Sets + "Set(s) " + Reps + "Rep(s)";
+        }
     }
 }
