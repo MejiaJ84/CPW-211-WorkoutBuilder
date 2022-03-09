@@ -53,13 +53,15 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmMuscleGroup,
             this.tsmExercise,
             this.tsmWorkoutBuilder});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 3, 0, 3);
+            this.menuStrip1.Size = new System.Drawing.Size(1029, 30);
             this.menuStrip1.TabIndex = 10;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -70,27 +72,33 @@
             this.tsmUpdateMG,
             this.tsmDeleteMG});
             this.tsmMuscleGroup.Name = "tsmMuscleGroup";
-            this.tsmMuscleGroup.Size = new System.Drawing.Size(93, 20);
+            this.tsmMuscleGroup.Size = new System.Drawing.Size(119, 24);
             this.tsmMuscleGroup.Text = "Muscle Group";
             // 
             // tsmAddmuscleGroup
             // 
             this.tsmAddmuscleGroup.Name = "tsmAddmuscleGroup";
+
             this.tsmAddmuscleGroup.Size = new System.Drawing.Size(112, 22);
+
             this.tsmAddmuscleGroup.Text = "Add ";
             this.tsmAddmuscleGroup.Click += new System.EventHandler(this.tsmAddmuscleGroup_Click);
             // 
             // tsmUpdateMG
             // 
             this.tsmUpdateMG.Name = "tsmUpdateMG";
+
             this.tsmUpdateMG.Size = new System.Drawing.Size(112, 22);
+
             this.tsmUpdateMG.Text = "Update";
             this.tsmUpdateMG.Click += new System.EventHandler(this.tsmUpdateMG_Click);
             // 
             // tsmDeleteMG
             // 
             this.tsmDeleteMG.Name = "tsmDeleteMG";
+
             this.tsmDeleteMG.Size = new System.Drawing.Size(112, 22);
+
             this.tsmDeleteMG.Text = "Delete";
             this.tsmDeleteMG.Click += new System.EventHandler(this.tsmDeleteMG_Click);
             // 
@@ -101,43 +109,51 @@
             this.tsmUpdateExercise,
             this.tsmDeleteExercise});
             this.tsmExercise.Name = "tsmExercise";
-            this.tsmExercise.Size = new System.Drawing.Size(61, 20);
+            this.tsmExercise.Size = new System.Drawing.Size(76, 24);
             this.tsmExercise.Text = "Exercise";
             // 
             // tsmAddExercise
             // 
             this.tsmAddExercise.Name = "tsmAddExercise";
+ 
             this.tsmAddExercise.Size = new System.Drawing.Size(180, 22);
+
             this.tsmAddExercise.Text = "Add";
             this.tsmAddExercise.Click += new System.EventHandler(this.tsmAddExercise_Click);
             // 
             // tsmUpdateExercise
             // 
+
             this.tsmUpdateExercise.Name = "tsmUpdateExercise";
             this.tsmUpdateExercise.Size = new System.Drawing.Size(180, 22);
             this.tsmUpdateExercise.Text = "Update";
             this.tsmUpdateExercise.Click += new System.EventHandler(this.tsmUpdateExercise_Click);
+
             // 
             // tsmDeleteExercise
             // 
             this.tsmDeleteExercise.Name = "tsmDeleteExercise";
+
             this.tsmDeleteExercise.Size = new System.Drawing.Size(180, 22);
+
             this.tsmDeleteExercise.Text = "Delete";
             this.tsmDeleteExercise.Click += new System.EventHandler(this.tsmDeleteExercise_Click);
             // 
             // tsmWorkoutBuilder
             // 
             this.tsmWorkoutBuilder.Name = "tsmWorkoutBuilder";
-            this.tsmWorkoutBuilder.Size = new System.Drawing.Size(137, 20);
+            this.tsmWorkoutBuilder.Size = new System.Drawing.Size(178, 24);
             this.tsmWorkoutBuilder.Text = "Open Workout Builder";
+            this.tsmWorkoutBuilder.Click += new System.EventHandler(this.tsmWorkoutBuilder_Click);
             // 
             // txtWelcome
             // 
             this.txtWelcome.Enabled = false;
-            this.txtWelcome.Location = new System.Drawing.Point(176, 51);
+            this.txtWelcome.Location = new System.Drawing.Point(226, 68);
+            this.txtWelcome.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtWelcome.Multiline = true;
             this.txtWelcome.Name = "txtWelcome";
-            this.txtWelcome.Size = new System.Drawing.Size(344, 43);
+            this.txtWelcome.Size = new System.Drawing.Size(441, 56);
             this.txtWelcome.TabIndex = 11;
             this.txtWelcome.Text = "Welcome to Workout Builder app version 1.00.alpha1\r\nPlease make you selection fro" +
     "m the menu above to get started.\r\n";
@@ -152,9 +168,11 @@
             this.gbAddUpdateDelete.Controls.Add(this.lblInstructions);
             this.gbAddUpdateDelete.Controls.Add(this.txtAddMuscleOrExercise);
             this.gbAddUpdateDelete.Controls.Add(this.btnAddUpdate);
+
             this.gbAddUpdateDelete.Location = new System.Drawing.Point(37, 151);
             this.gbAddUpdateDelete.Name = "gbAddUpdateDelete";
             this.gbAddUpdateDelete.Size = new System.Drawing.Size(519, 240);
+
             this.gbAddUpdateDelete.TabIndex = 12;
             this.gbAddUpdateDelete.TabStop = false;
             this.gbAddUpdateDelete.Visible = false;
@@ -194,15 +212,18 @@
             // 
             this.cbUpdateDelete.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbUpdateDelete.FormattingEnabled = true;
+
             this.cbUpdateDelete.Location = new System.Drawing.Point(6, 92);
             this.cbUpdateDelete.MaxDropDownItems = 20;
+
             this.cbUpdateDelete.Name = "cbUpdateDelete";
-            this.cbUpdateDelete.Size = new System.Drawing.Size(211, 23);
+            this.cbUpdateDelete.Size = new System.Drawing.Size(270, 28);
             this.cbUpdateDelete.TabIndex = 4;
             this.cbUpdateDelete.Visible = false;
             // 
             // lblInstructions
             // 
+
             this.lblInstructions.AutoSize = true;
             this.lblInstructions.Location = new System.Drawing.Point(69, 19);
             this.lblInstructions.Name = "lblInstructions";
@@ -213,15 +234,18 @@
             // txtAddMuscleOrExercise
             // 
             this.txtAddMuscleOrExercise.Location = new System.Drawing.Point(6, 37);
+
             this.txtAddMuscleOrExercise.Name = "txtAddMuscleOrExercise";
-            this.txtAddMuscleOrExercise.Size = new System.Drawing.Size(211, 23);
+            this.txtAddMuscleOrExercise.Size = new System.Drawing.Size(270, 27);
             this.txtAddMuscleOrExercise.TabIndex = 2;
             // 
             // btnAddUpdate
             // 
+
             this.btnAddUpdate.Location = new System.Drawing.Point(241, 163);
+
             this.btnAddUpdate.Name = "btnAddUpdate";
-            this.btnAddUpdate.Size = new System.Drawing.Size(190, 71);
+            this.btnAddUpdate.Size = new System.Drawing.Size(244, 95);
             this.btnAddUpdate.TabIndex = 1;
             this.btnAddUpdate.UseVisualStyleBackColor = true;
             this.btnAddUpdate.Click += new System.EventHandler(this.btntest1_Click);
@@ -229,12 +253,13 @@
             // Main
             // 
             this.AcceptButton = this.btnAddUpdate;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1029, 600);
             this.Controls.Add(this.gbAddUpdateDelete);
             this.Controls.Add(this.txtWelcome);
             this.Controls.Add(this.menuStrip1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Main";
             this.Text = "Add to database";
             this.Load += new System.EventHandler(this.Add_Load);

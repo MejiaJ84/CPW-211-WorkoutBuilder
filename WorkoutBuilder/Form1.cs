@@ -393,6 +393,14 @@ namespace WorkoutBuilder
             return true; // Implicit else
         }
 
+
+        private void tsmWorkoutBuilder_Click(object sender, EventArgs e)
+        {
+            WorkoutBuilder workoutBuilderForm = new WorkoutBuilder();
+            workoutBuilderForm.ShowDialog();
+        }
+
+
         /// <summary>
         /// Checks if all user input fields have valid inputs
         /// </summary>
@@ -464,6 +472,7 @@ namespace WorkoutBuilder
         }
 
         
+
 
 
 
