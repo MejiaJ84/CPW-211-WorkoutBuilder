@@ -92,5 +92,16 @@ namespace WorkoutBuilder
             context.SaveChanges();
         }
 
+        /// <summary>
+        /// Deletes the exercise the user selects
+        /// in the combo box, from the database
+        /// </summary>
+        /// <param name="workoutToDelete"></param>
+        public static void DeleteExercise(Workout workoutToDelete)
+        {
+            WorkoutBuilderContext context = new();
+            context.Remove(workoutToDelete);
+            context.SaveChanges();
+        }
     }
 }

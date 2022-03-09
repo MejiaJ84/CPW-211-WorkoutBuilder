@@ -88,7 +88,7 @@ namespace WorkoutBuilder
                     DialogResult confirmation = MessageBox.Show($"Are you sure you want to delete {workoutToDelete.WorkoutName}?", "Confirm", MessageBoxButtons.YesNo);
                     if (confirmation == DialogResult.Yes)
                     {
-                        DeleteExercise(workoutToDelete);
+                        WorkoutDBHelper.DeleteExercise(workoutToDelete);
                         MessageBox.Show($"{workoutToDelete.WorkoutName} has been deleted.");
                     }
                 }
@@ -234,18 +234,6 @@ namespace WorkoutBuilder
             MakeInvisible(lblExerciseDescription);
             MakeVisible(cbUpdateDeleteExercise);
             MakeVisible(gbAddUpdateDelete);
-        }
-
-        /// <summary>
-        /// Deletes the exercise the user selects
-        /// from the combo box, from the database
-        /// </summary>
-        /// <param name="workoutToDelete"></param>
-        private void DeleteExercise(Workout workoutToDelete)
-        {
-            WorkoutBuilderContext context = new();
-            context.Remove(workoutToDelete);
-            context.SaveChanges();
         }
 
         /// <summary>
