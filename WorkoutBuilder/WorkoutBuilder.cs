@@ -29,18 +29,18 @@ namespace WorkoutBuilder
 
         private void populateWorkouts()
         {
-            worktoutstoDays(lbx_Monday, "Monday");
-            worktoutstoDays(lbx_Tuesday, "Tuesday");
-            worktoutstoDays(lbx_Wednesday, "Wednesday");
-            worktoutstoDays(lbx_Thursday, "Thursday");
-            worktoutstoDays(lbx_Friday, "Friday");
-            worktoutstoDays(lbx_Saturday, "Saturday");
-            worktoutstoDays(lbx_Sunday, "Sunday");
+            worktoutsToDays(lbx_Monday, "Monday");
+            worktoutsToDays(lbx_Tuesday, "Tuesday");
+            worktoutsToDays(lbx_Wednesday, "Wednesday");
+            worktoutsToDays(lbx_Thursday, "Thursday");
+            worktoutsToDays(lbx_Friday, "Friday");
+            worktoutsToDays(lbx_Saturday, "Saturday");
+            worktoutsToDays(lbx_Sunday, "Sunday");
         }
 
-        private void worktoutstoDays(ListBox listbox, string day)
+        private void worktoutsToDays(ListBox listbox, string day)
         {
-            WorkoutBuilderContext dbContext = new();
+            using WorkoutBuilderContext dbContext = new();
 
             listbox.Items.Clear();
 
@@ -52,6 +52,63 @@ namespace WorkoutBuilder
             {
                 listbox.Items.Add(workout);
             }
+        }
+
+        private void btn_DeleteWorkout_Click(object sender, EventArgs e)
+        {
+            deleteWorkout();
+
+            populateWorkouts();
+        }
+
+        private void deleteWorkout()
+        {
+            if(lbx_Monday.SelectedItem != null)
+            {
+                deleteMethod(lbx_Monday);
+            }
+            else if (lbx_Tuesday.SelectedItem != null)
+            {
+                deleteMethod(lbx_Tuesday);
+            }
+            else if (lbx_Wednesday.SelectedItem != null)
+            {
+                deleteMethod(lbx_Wednesday);
+            }
+            else if (lbx_Thursday.SelectedItem != null)
+            {
+                deleteMethod(lbx_Thursday);
+            }
+            else if (lbx_Friday.SelectedItem != null)
+            {
+                deleteMethod(lbx_Friday);
+            }
+            else if (lbx_Saturday.SelectedItem != null)
+            {
+                deleteMethod(lbx_Saturday);
+            }
+            else if (lbx_Sunday.SelectedItem != null)
+            {
+                deleteMethod(lbx_Sunday);
+            }
+            else
+            {
+                MessageBox.Show("Please Select a workout to delete", "Error"
+                                , MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void deleteMethod(ListBox listBox)
+        {
+            using WorkoutBuilderContext dbContext = new();
+            WorkoutOfDay workoutToDelete = listBox.SelectedItem as WorkoutOfDay;
+            dbContext.WorkoutOfDays.Remove(workoutToDelete);
+            dbContext.SaveChanges();
+        }
+
+        private void btn_close_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

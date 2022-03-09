@@ -191,6 +191,7 @@
             this.btn_DeleteWorkout.TabIndex = 21;
             this.btn_DeleteWorkout.Text = "Delete";
             this.btn_DeleteWorkout.UseVisualStyleBackColor = true;
+            this.btn_DeleteWorkout.Click += new System.EventHandler(this.btn_DeleteWorkout_Click);
             // 
             // btn_close
             // 
@@ -200,6 +201,7 @@
             this.btn_close.TabIndex = 22;
             this.btn_close.Text = "Close";
             this.btn_close.UseVisualStyleBackColor = true;
+            this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
             // 
             // WorkoutBuilder
             // 

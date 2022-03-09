@@ -144,7 +144,7 @@
             this.Controls.Add(this.lbl_DayOfWeek);
             this.Controls.Add(this.lbl_Workout);
             this.Name = "AddWorkoutsOfDay";
-            this.Text = "Add Workouts to the Days of the Week";
+            this.Text = "Add Workouts to the Day";
             this.Load += new System.EventHandler(this.AddWorkoutsOfDay_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
