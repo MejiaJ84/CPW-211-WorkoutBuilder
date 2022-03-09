@@ -35,15 +35,16 @@
             this.tsmDeleteMG = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmExercise = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmAddExercise = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.UpdateExercise = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmUpdateExercise = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmDeleteExercise = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmWorkoutBuilder = new System.Windows.Forms.ToolStripMenuItem();
             this.txtWelcome = new System.Windows.Forms.TextBox();
             this.gbAddUpdateDelete = new System.Windows.Forms.GroupBox();
+            this.cbUpdateDeleteExercise = new System.Windows.Forms.ComboBox();
+            this.lblExerciseDescription = new System.Windows.Forms.Label();
+            this.rtxtExerciseDescription = new System.Windows.Forms.RichTextBox();
             this.cbUpdateDelete = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblInstructions = new System.Windows.Forms.Label();
             this.txtAddMuscleOrExercise = new System.Windows.Forms.TextBox();
             this.btnAddUpdate = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
@@ -77,29 +78,35 @@
             // tsmAddmuscleGroup
             // 
             this.tsmAddmuscleGroup.Name = "tsmAddmuscleGroup";
-            this.tsmAddmuscleGroup.Size = new System.Drawing.Size(142, 26);
+
+            this.tsmAddmuscleGroup.Size = new System.Drawing.Size(112, 22);
+
             this.tsmAddmuscleGroup.Text = "Add ";
             this.tsmAddmuscleGroup.Click += new System.EventHandler(this.tsmAddmuscleGroup_Click);
             // 
             // tsmUpdateMG
             // 
             this.tsmUpdateMG.Name = "tsmUpdateMG";
-            this.tsmUpdateMG.Size = new System.Drawing.Size(142, 26);
+
+            this.tsmUpdateMG.Size = new System.Drawing.Size(112, 22);
+
             this.tsmUpdateMG.Text = "Update";
+            this.tsmUpdateMG.Click += new System.EventHandler(this.tsmUpdateMG_Click);
             // 
             // tsmDeleteMG
             // 
             this.tsmDeleteMG.Name = "tsmDeleteMG";
-            this.tsmDeleteMG.Size = new System.Drawing.Size(142, 26);
+
+            this.tsmDeleteMG.Size = new System.Drawing.Size(112, 22);
+
             this.tsmDeleteMG.Text = "Delete";
+            this.tsmDeleteMG.Click += new System.EventHandler(this.tsmDeleteMG_Click);
             // 
             // tsmExercise
             // 
             this.tsmExercise.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmAddExercise,
-            this.toolStripSeparator3,
-            this.UpdateExercise,
-            this.toolStripSeparator4,
+            this.tsmUpdateExercise,
             this.tsmDeleteExercise});
             this.tsmExercise.Name = "tsmExercise";
             this.tsmExercise.Size = new System.Drawing.Size(76, 24);
@@ -108,30 +115,29 @@
             // tsmAddExercise
             // 
             this.tsmAddExercise.Name = "tsmAddExercise";
-            this.tsmAddExercise.Size = new System.Drawing.Size(224, 26);
+ 
+            this.tsmAddExercise.Size = new System.Drawing.Size(180, 22);
+
             this.tsmAddExercise.Text = "Add";
+            this.tsmAddExercise.Click += new System.EventHandler(this.tsmAddExercise_Click);
             // 
-            // toolStripSeparator3
+            // tsmUpdateExercise
             // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(221, 6);
-            // 
-            // UpdateExercise
-            // 
-            this.UpdateExercise.Name = "UpdateExercise";
-            this.UpdateExercise.Size = new System.Drawing.Size(224, 26);
-            this.UpdateExercise.Text = "Update";
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(221, 6);
+
+            this.tsmUpdateExercise.Name = "tsmUpdateExercise";
+            this.tsmUpdateExercise.Size = new System.Drawing.Size(180, 22);
+            this.tsmUpdateExercise.Text = "Update";
+            this.tsmUpdateExercise.Click += new System.EventHandler(this.tsmUpdateExercise_Click);
+
             // 
             // tsmDeleteExercise
             // 
             this.tsmDeleteExercise.Name = "tsmDeleteExercise";
-            this.tsmDeleteExercise.Size = new System.Drawing.Size(224, 26);
+
+            this.tsmDeleteExercise.Size = new System.Drawing.Size(180, 22);
+
             this.tsmDeleteExercise.Text = "Delete";
+            this.tsmDeleteExercise.Click += new System.EventHandler(this.tsmDeleteExercise_Click);
             // 
             // tsmWorkoutBuilder
             // 
@@ -155,51 +161,89 @@
             // 
             // gbAddUpdateDelete
             // 
+            this.gbAddUpdateDelete.Controls.Add(this.cbUpdateDeleteExercise);
+            this.gbAddUpdateDelete.Controls.Add(this.lblExerciseDescription);
+            this.gbAddUpdateDelete.Controls.Add(this.rtxtExerciseDescription);
             this.gbAddUpdateDelete.Controls.Add(this.cbUpdateDelete);
-            this.gbAddUpdateDelete.Controls.Add(this.label1);
+            this.gbAddUpdateDelete.Controls.Add(this.lblInstructions);
             this.gbAddUpdateDelete.Controls.Add(this.txtAddMuscleOrExercise);
             this.gbAddUpdateDelete.Controls.Add(this.btnAddUpdate);
-            this.gbAddUpdateDelete.Location = new System.Drawing.Point(54, 201);
-            this.gbAddUpdateDelete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+
+            this.gbAddUpdateDelete.Location = new System.Drawing.Point(37, 151);
             this.gbAddUpdateDelete.Name = "gbAddUpdateDelete";
-            this.gbAddUpdateDelete.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.gbAddUpdateDelete.Size = new System.Drawing.Size(526, 320);
+            this.gbAddUpdateDelete.Size = new System.Drawing.Size(519, 240);
+
             this.gbAddUpdateDelete.TabIndex = 12;
             this.gbAddUpdateDelete.TabStop = false;
             this.gbAddUpdateDelete.Visible = false;
             // 
+            // cbUpdateDeleteExercise
+            // 
+            this.cbUpdateDeleteExercise.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbUpdateDeleteExercise.FormattingEnabled = true;
+            this.cbUpdateDeleteExercise.Location = new System.Drawing.Point(6, 66);
+            this.cbUpdateDeleteExercise.MaxDropDownItems = 20;
+            this.cbUpdateDeleteExercise.Name = "cbUpdateDeleteExercise";
+            this.cbUpdateDeleteExercise.Size = new System.Drawing.Size(211, 23);
+            this.cbUpdateDeleteExercise.TabIndex = 7;
+            this.cbUpdateDeleteExercise.Visible = false;
+            this.cbUpdateDeleteExercise.SelectedIndexChanged += new System.EventHandler(this.cbUpdateDeleteExercise_SelectedIndexChanged);
+            // 
+            // lblExerciseDescription
+            // 
+            this.lblExerciseDescription.AutoSize = true;
+            this.lblExerciseDescription.Location = new System.Drawing.Point(6, 118);
+            this.lblExerciseDescription.Name = "lblExerciseDescription";
+            this.lblExerciseDescription.Size = new System.Drawing.Size(144, 15);
+            this.lblExerciseDescription.TabIndex = 6;
+            this.lblExerciseDescription.Text = "Enter exercise description.";
+            this.lblExerciseDescription.Visible = false;
+            // 
+            // rtxtExerciseDescription
+            // 
+            this.rtxtExerciseDescription.Location = new System.Drawing.Point(6, 136);
+            this.rtxtExerciseDescription.Name = "rtxtExerciseDescription";
+            this.rtxtExerciseDescription.Size = new System.Drawing.Size(211, 98);
+            this.rtxtExerciseDescription.TabIndex = 5;
+            this.rtxtExerciseDescription.Text = "";
+            this.rtxtExerciseDescription.Visible = false;
+            // 
             // cbUpdateDelete
             // 
+            this.cbUpdateDelete.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbUpdateDelete.FormattingEnabled = true;
-            this.cbUpdateDelete.Location = new System.Drawing.Point(45, 124);
-            this.cbUpdateDelete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+
+            this.cbUpdateDelete.Location = new System.Drawing.Point(6, 92);
+            this.cbUpdateDelete.MaxDropDownItems = 20;
+
             this.cbUpdateDelete.Name = "cbUpdateDelete";
             this.cbUpdateDelete.Size = new System.Drawing.Size(270, 28);
             this.cbUpdateDelete.TabIndex = 4;
             this.cbUpdateDelete.Visible = false;
             // 
-            // label1
+            // lblInstructions
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(45, 47);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(50, 20);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "label1";
+
+            this.lblInstructions.AutoSize = true;
+            this.lblInstructions.Location = new System.Drawing.Point(69, 19);
+            this.lblInstructions.Name = "lblInstructions";
+            this.lblInstructions.Size = new System.Drawing.Size(38, 15);
+            this.lblInstructions.TabIndex = 3;
+            this.lblInstructions.Text = "label1\r\n";
             // 
             // txtAddMuscleOrExercise
             // 
-            this.txtAddMuscleOrExercise.Location = new System.Drawing.Point(45, 97);
-            this.txtAddMuscleOrExercise.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtAddMuscleOrExercise.Location = new System.Drawing.Point(6, 37);
+
             this.txtAddMuscleOrExercise.Name = "txtAddMuscleOrExercise";
             this.txtAddMuscleOrExercise.Size = new System.Drawing.Size(270, 27);
             this.txtAddMuscleOrExercise.TabIndex = 2;
             // 
             // btnAddUpdate
             // 
-            this.btnAddUpdate.Location = new System.Drawing.Point(238, 217);
-            this.btnAddUpdate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+
+            this.btnAddUpdate.Location = new System.Drawing.Point(241, 163);
+
             this.btnAddUpdate.Name = "btnAddUpdate";
             this.btnAddUpdate.Size = new System.Drawing.Size(244, 95);
             this.btnAddUpdate.TabIndex = 1;
@@ -237,16 +281,17 @@
         private ToolStripMenuItem tsmDeleteMG;
         private ToolStripMenuItem tsmExercise;
         private ToolStripMenuItem tsmAddExercise;
-        private ToolStripSeparator toolStripSeparator3;
-        private ToolStripMenuItem UpdateExercise;
-        private ToolStripSeparator toolStripSeparator4;
+        private ToolStripMenuItem tsmUpdateExercise;
         private ToolStripMenuItem tsmDeleteExercise;
         private ToolStripMenuItem tsmWorkoutBuilder;
         private TextBox txtWelcome;
         private GroupBox gbAddUpdateDelete;
         private TextBox txtAddMuscleOrExercise;
         private Button btnAddUpdate;
-        private Label label1;
+        private Label lblInstructions;
         private ComboBox cbUpdateDelete;
+        private RichTextBox rtxtExerciseDescription;
+        private Label lblExerciseDescription;
+        private ComboBox cbUpdateDeleteExercise;
     }
 }
