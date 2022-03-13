@@ -27,5 +27,13 @@ namespace WorkoutBuilder
             context.WorkoutParts.Add(muscleGroup);
             context.SaveChanges();
         }
+
+        public static void UpateMuscleGroup(WorkoutPart workoutPartToUpdate, string updatedWorkokutPart)
+        {
+            WorkoutBuilderContext context = new();
+            workoutPartToUpdate.MuscleGroup = updatedWorkokutPart;
+            context.Update(workoutPartToUpdate);
+            context.SaveChanges();
+        }
     }
 }

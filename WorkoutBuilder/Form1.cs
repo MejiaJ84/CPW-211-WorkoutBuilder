@@ -43,7 +43,8 @@ namespace WorkoutBuilder
 
                 if (_currentOp == CurrentWorkoutBuilderOperation.UpdateMuscleGroup)
                 { 
-                    UpdateMuscleGroup();
+                    WorkoutPart updateWorkoutPart = cbUpdateDelete.SelectedItem as WorkoutPart;
+                    WorkoutDBHelper.UpateMuscleGroup(updateWorkoutPart, txtAddMuscleOrExercise.Text);
                     MessageBox.Show($"{txtAddMuscleOrExercise.Text} updated successfully!");
                     txtAddMuscleOrExercise.Clear();
                 }
@@ -240,11 +241,7 @@ namespace WorkoutBuilder
         /// <param name="updatedMuscleGroup"> The value obtained from the combo box</param>
         private void UpdateMuscleGroup()
         {
-            WorkoutBuilderContext context = new();
-            WorkoutPart workoutPartToUpdate = cbUpdateDelete.SelectedItem as WorkoutPart;
-            workoutPartToUpdate.MuscleGroup = txtAddMuscleOrExercise.Text;
-            context.Update(workoutPartToUpdate);
-            context.SaveChanges();
+            
         }
 
         /// <summary>
