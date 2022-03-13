@@ -75,5 +75,37 @@ namespace WorkoutBuilder
             context.Workouts.Add(exercise);
             context.SaveChanges();
         }
+
+        /// <summary>
+        /// Adds the values from the text box, rich text box, 
+        /// and the Part selected from the combo box into to the corresponding
+        /// columns in the workout table
+        /// </summary>
+        /// <param name="currentExercise"></param>
+        /// <param name="updatedWorkoutPartId"></param>
+        /// <param name="updatedExercise"></param>
+        /// <param name="updatedDescription"></param>
+        public static void UpdateExercise(Workout currentExercise, WorkoutPart updatedWorkoutPartId, string updatedExercise, string updatedDescription)
+        {
+            WorkoutBuilderContext context = new();
+            context.Attach(currentExercise);
+            currentExercise.WorkoutName = updatedExercise;
+            currentExercise.WorkoutPartID = updatedWorkoutPartId.WorkoutPartID;
+            currentExercise.WorkoutDescription = updatedDescription;
+            context.Update(currentExercise);
+            context.SaveChanges();
+        }
+
+        /// <summary>
+        /// Deletes the exercise the user selects
+        /// from the combo box, from the database
+        /// </summary>
+        /// <param name="exerciseToDelete"></param>
+        public static void DeleteExercise(Workout exerciseToDelete)
+        {
+            WorkoutBuilderContext context = new();
+            context.Remove(exerciseToDelete);
+            context.SaveChanges();
+        }
     }
 }

@@ -71,7 +71,11 @@ namespace WorkoutBuilder
 
                 if (_currentOp == CurrentWorkoutBuilderOperation.UpdateExercise)
                 {
-                    UpdateExercise();
+                    WorkoutPart updatedWorkoutPartId = cbUpdateDelete.SelectedItem as WorkoutPart;
+                    Workout currentExercise = cbUpdateDeleteExercise.SelectedItem as Workout;
+                    
+                    WorkoutDBHelper.UpdateExercise(currentExercise, updatedWorkoutPartId, txtAddMuscleOrExercise.Text, rtxtExerciseDescription.Text);
+                    
                     MessageBox.Show($"{txtAddMuscleOrExercise.Text} Updated successfully!", "Success", MessageBoxButtons.OK);
                     txtAddMuscleOrExercise.Clear();
                     rtxtExerciseDescription.Clear();
@@ -79,12 +83,12 @@ namespace WorkoutBuilder
 
                 if (_currentOp == CurrentWorkoutBuilderOperation.DeleteExercise)
                 {
-                    Workout workoutToDelete = cbUpdateDeleteExercise.SelectedItem as Workout;
-                    DialogResult confirmation = MessageBox.Show($"Are you sure you want to delete {workoutToDelete.WorkoutName}?", "Confirm", MessageBoxButtons.YesNo);
+                    Workout exerciseToDelete = cbUpdateDeleteExercise.SelectedItem as Workout;
+                    DialogResult confirmation = MessageBox.Show($"Are you sure you want to delete {exerciseToDelete.WorkoutName}?", "Confirm", MessageBoxButtons.YesNo);
                     if (confirmation == DialogResult.Yes)
                     {
-                        DeleteExercise(workoutToDelete);
-                        MessageBox.Show($"{workoutToDelete.WorkoutName} has been deleted.");
+                        WorkoutDBHelper.DeleteExercise(exerciseToDelete);
+                        MessageBox.Show($"{exerciseToDelete.WorkoutName} has been deleted.");
                     }
                 }
             }
@@ -229,34 +233,6 @@ namespace WorkoutBuilder
             MakeInvisible(lblExerciseDescription);
             MakeVisible(cbUpdateDeleteExercise);
             MakeVisible(gbAddUpdateDelete);
-        }
-
-
-        /// <summary>
-        /// Adds the values from the text box
-        /// and from the rich text box to the corresponding
-        /// columns in the workout table
-        /// </summary>
-        private void UpdateExercise()
-        {
-            WorkoutBuilderContext context = new();
-            Workout updatedExercise = cbUpdateDeleteExercise.SelectedItem as Workout;
-            updatedExercise.WorkoutName = txtAddMuscleOrExercise.Text;
-            updatedExercise.WorkoutDescription = rtxtExerciseDescription.Text;
-            context.Update(updatedExercise);
-            context.SaveChanges();
-        }
-
-        /// <summary>
-        /// Deletes the exercise the user selects
-        /// from the combo box, from the database
-        /// </summary>
-        /// <param name="workoutToDelete"></param>
-        private void DeleteExercise(Workout workoutToDelete)
-        {
-            WorkoutBuilderContext context = new();
-            context.Remove(workoutToDelete);
-            context.SaveChanges();
         }
 
         /// <summary>
@@ -405,7 +381,7 @@ namespace WorkoutBuilder
                 }
             }
             return isDataValid;
-            // TODO: add validation to check if item isnt already in database when adding and if item is in database when updating/deleting.
+            // TODO: add validation to check if item isn't already in database when adding and if item is in database when updating/deleting.
         }
 
         /// <summary>
