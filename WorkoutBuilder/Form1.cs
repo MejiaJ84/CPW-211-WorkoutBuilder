@@ -186,6 +186,7 @@ namespace WorkoutBuilder
             MakeVisible(rtxtExerciseDescription);
             MakeVisible(lblExerciseDescription);
             MakeVisible(gbAddUpdateDelete);
+            rtxtExerciseDescription.Clear();
         }
 
         /// <summary>
