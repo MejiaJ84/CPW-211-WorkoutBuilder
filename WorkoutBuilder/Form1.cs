@@ -55,7 +55,7 @@ namespace WorkoutBuilder
                     DialogResult confirmation = MessageBox.Show($"Are you sure you want to delete {workoutPartToDelete.MuscleGroup}?", "Confirm", MessageBoxButtons.YesNo);
                     if (confirmation == DialogResult.Yes)
                     {
-                        DeleteMuscleGroup(workoutPartToDelete);
+                        WorkoutDBHelper.DeleteMuscleGroup(workoutPartToDelete);
                         MessageBox.Show($"{workoutPartToDelete.MuscleGroup} has been deleted.");
                     }
                 }
@@ -233,28 +233,7 @@ namespace WorkoutBuilder
         
         
 
-        /// <summary>
-        /// Searches the workouts part table for data matching
-        /// the string passed in and updates it with the value from
-        /// the text box
-        /// </summary>
-        /// <param name="updatedMuscleGroup"> The value obtained from the combo box</param>
-        private void UpdateMuscleGroup()
-        {
-            
-        }
-
-        /// <summary>
-        /// Deletes the muscle group the user selects
-        /// from the combo box, from the database
-        /// </summary>
-        /// <param name="workoutPartToDelete"></param>
-        private void DeleteMuscleGroup(WorkoutPart workoutPartToDelete)
-        {
-            WorkoutBuilderContext context = new();
-            context.Remove(workoutPartToDelete);
-            context.SaveChanges();
-        }
+    
 
         /// <summary>
         /// Adds the values from the text box
