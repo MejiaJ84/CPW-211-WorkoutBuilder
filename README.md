@@ -26,11 +26,12 @@
 ## Workout Builder Form
 ### To open the Workout Builder Form, select it from the menu at the top of the app.
 ![](Images/OpenWorkoutBuilder.png)
-![](Images/WBForm.png)
+![](Images/WorkoutBuilder.PNG)
 
 ### Adding a Workout
-![](Images/AddWB.png)
-![](Images/CreatingAWorkout.png)
+#### When selecting workout, if none of the workout parts is selected, all workouts in database will show in the list.
+![](Images/BlankAddWorkoutForm.PNG)
+![](Images/FilledAddWorkoutForm.PNG)
 
 
 
