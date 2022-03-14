@@ -15,5 +15,10 @@ namespace WorkoutBuilder.Model
         public string MuscleGroup { get; set; }
 
         public List<Workout> Workouts { get; set; }
+
+        public override string ToString()
+        {
+            return MuscleGroup;
+        }
     }
 }

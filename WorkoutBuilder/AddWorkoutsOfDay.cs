@@ -23,15 +23,45 @@ namespace WorkoutBuilder
 
         private void AddWorkoutsOfDay_Load(object sender, EventArgs e)
         {
-            InitializeCOmboBoxWorkout();
+            InitializeComboBoxWorkoutPart();
+            InitializeComboBoxWorkout();
             InitializeComboBoxDays();
+            
         }
 
-        private void InitializeCOmboBoxWorkout()
+        private void InitializeComboBoxWorkoutPart()
+        {
+            using WorkoutBuilderContext dbContext = new();
+
+            List<WorkoutPart> allWorkoutParts = dbContext.WorkoutParts.ToList();
+
+            foreach (WorkoutPart workoutParts in allWorkoutParts)
+            {
+                cbx_WorkoutPart.Items.Add(workoutParts);
+            }
+        }
+
+        private void InitializeComboBoxWorkout()
         {
             using WorkoutBuilderContext dbContext = new();
 
             List<Workout> allWorkouts = dbContext.Workouts.ToList();
+
+            foreach (Workout workout in allWorkouts)
+            {
+                cbx_Workout.Items.Add(workout);
+            }
+        }
+
+        private void InitializeComboBoxWorkout(int WorkoutPartid)
+        {
+            using WorkoutBuilderContext dbContext = new();
+
+            cbx_Workout.Items.Clear();
+
+            List<Workout> allWorkouts = dbContext.Workouts
+                                        .Where(w => w.WorkoutPartID == WorkoutPartid)
+                                        .ToList();
 
             foreach (Workout workout in allWorkouts)
             {
@@ -97,6 +127,12 @@ namespace WorkoutBuilder
 
                 this.Close();
             }
+        }
+
+        private void cbx_WorkoutPart_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            WorkoutPart selectedWorkoutPart = cbx_WorkoutPart.SelectedItem as WorkoutPart;
+            InitializeComboBoxWorkout(selectedWorkoutPart.WorkoutPartID);
         }
     }
 }
