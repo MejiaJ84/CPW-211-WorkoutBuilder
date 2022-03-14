@@ -38,12 +38,14 @@
             this.txt_Reps = new System.Windows.Forms.TextBox();
             this.btn_Add = new System.Windows.Forms.Button();
             this.btn_Close = new System.Windows.Forms.Button();
+            this.cbx_WorkoutPart = new System.Windows.Forms.ComboBox();
+            this.lbl_WorkoutPart = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbl_Workout
             // 
             this.lbl_Workout.AutoSize = true;
-            this.lbl_Workout.Location = new System.Drawing.Point(90, 82);
+            this.lbl_Workout.Location = new System.Drawing.Point(83, 111);
             this.lbl_Workout.Name = "lbl_Workout";
             this.lbl_Workout.Size = new System.Drawing.Size(68, 20);
             this.lbl_Workout.TabIndex = 0;
@@ -52,7 +54,7 @@
             // lbl_DayOfWeek
             // 
             this.lbl_DayOfWeek.AutoSize = true;
-            this.lbl_DayOfWeek.Location = new System.Drawing.Point(90, 138);
+            this.lbl_DayOfWeek.Location = new System.Drawing.Point(83, 167);
             this.lbl_DayOfWeek.Name = "lbl_DayOfWeek";
             this.lbl_DayOfWeek.Size = new System.Drawing.Size(97, 20);
             this.lbl_DayOfWeek.TabIndex = 1;
@@ -61,7 +63,7 @@
             // lbl_Reps
             // 
             this.lbl_Reps.AutoSize = true;
-            this.lbl_Reps.Location = new System.Drawing.Point(90, 274);
+            this.lbl_Reps.Location = new System.Drawing.Point(83, 303);
             this.lbl_Reps.Name = "lbl_Reps";
             this.lbl_Reps.Size = new System.Drawing.Size(41, 20);
             this.lbl_Reps.TabIndex = 2;
@@ -70,7 +72,7 @@
             // lbl_Sets
             // 
             this.lbl_Sets.AutoSize = true;
-            this.lbl_Sets.Location = new System.Drawing.Point(90, 207);
+            this.lbl_Sets.Location = new System.Drawing.Point(83, 236);
             this.lbl_Sets.Name = "lbl_Sets";
             this.lbl_Sets.Size = new System.Drawing.Size(36, 20);
             this.lbl_Sets.TabIndex = 3;
@@ -80,7 +82,7 @@
             // 
             this.cbx_Workout.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_Workout.FormattingEnabled = true;
-            this.cbx_Workout.Location = new System.Drawing.Point(236, 82);
+            this.cbx_Workout.Location = new System.Drawing.Point(229, 111);
             this.cbx_Workout.Name = "cbx_Workout";
             this.cbx_Workout.Size = new System.Drawing.Size(151, 28);
             this.cbx_Workout.TabIndex = 4;
@@ -89,21 +91,21 @@
             // 
             this.cbx_days.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_days.FormattingEnabled = true;
-            this.cbx_days.Location = new System.Drawing.Point(236, 138);
+            this.cbx_days.Location = new System.Drawing.Point(229, 167);
             this.cbx_days.Name = "cbx_days";
             this.cbx_days.Size = new System.Drawing.Size(151, 28);
             this.cbx_days.TabIndex = 5;
             // 
             // txt_Sets
             // 
-            this.txt_Sets.Location = new System.Drawing.Point(236, 207);
+            this.txt_Sets.Location = new System.Drawing.Point(229, 236);
             this.txt_Sets.Name = "txt_Sets";
             this.txt_Sets.Size = new System.Drawing.Size(151, 27);
             this.txt_Sets.TabIndex = 6;
             // 
             // txt_Reps
             // 
-            this.txt_Reps.Location = new System.Drawing.Point(236, 274);
+            this.txt_Reps.Location = new System.Drawing.Point(229, 303);
             this.txt_Reps.Name = "txt_Reps";
             this.txt_Reps.Size = new System.Drawing.Size(151, 27);
             this.txt_Reps.TabIndex = 7;
@@ -128,11 +130,32 @@
             this.btn_Close.UseVisualStyleBackColor = true;
             this.btn_Close.Click += new System.EventHandler(this.btn_Close_Click);
             // 
+            // cbx_WorkoutPart
+            // 
+            this.cbx_WorkoutPart.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbx_WorkoutPart.FormattingEnabled = true;
+            this.cbx_WorkoutPart.Location = new System.Drawing.Point(229, 57);
+            this.cbx_WorkoutPart.Name = "cbx_WorkoutPart";
+            this.cbx_WorkoutPart.Size = new System.Drawing.Size(151, 28);
+            this.cbx_WorkoutPart.TabIndex = 11;
+            this.cbx_WorkoutPart.SelectedIndexChanged += new System.EventHandler(this.cbx_WorkoutPart_SelectedIndexChanged);
+            // 
+            // lbl_WorkoutPart
+            // 
+            this.lbl_WorkoutPart.AutoSize = true;
+            this.lbl_WorkoutPart.Location = new System.Drawing.Point(83, 57);
+            this.lbl_WorkoutPart.Name = "lbl_WorkoutPart";
+            this.lbl_WorkoutPart.Size = new System.Drawing.Size(100, 20);
+            this.lbl_WorkoutPart.TabIndex = 10;
+            this.lbl_WorkoutPart.Text = "Workout Part";
+            // 
             // AddWorkoutsOfDay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(457, 470);
+            this.Controls.Add(this.cbx_WorkoutPart);
+            this.Controls.Add(this.lbl_WorkoutPart);
             this.Controls.Add(this.btn_Close);
             this.Controls.Add(this.btn_Add);
             this.Controls.Add(this.txt_Reps);
@@ -163,5 +186,7 @@
         private TextBox txt_Reps;
         private Button btn_Add;
         private Button btn_Close;
+        private ComboBox cbx_WorkoutPart;
+        private Label lbl_WorkoutPart;
     }
 }
