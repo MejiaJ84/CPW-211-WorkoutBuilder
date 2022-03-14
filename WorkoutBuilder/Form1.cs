@@ -320,13 +320,11 @@ namespace WorkoutBuilder
             return true; // Implicit else
         }
 
-
         private void tsmWorkoutBuilder_Click(object sender, EventArgs e)
         {
             WorkoutBuilder workoutBuilderForm = new WorkoutBuilder();
             workoutBuilderForm.ShowDialog();
         }
-
 
         /// <summary>
         /// Checks if all user input fields have valid inputs
@@ -393,6 +391,14 @@ namespace WorkoutBuilder
             MessageBox.Show(errMsg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
+        /// <summary>
+        /// Fills the description box with the data pertaining to the 
+        /// exercise chosen from the combo box. In case when updating an exercise
+        /// only some or no parts of the description need to be changed, the user doesn't
+        /// have to re-write the description.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cbUpdateDeleteExercise_SelectedIndexChanged(object sender, EventArgs e)
         {
             FillExerciseDescriptionBox();
