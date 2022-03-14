@@ -11,7 +11,26 @@
 - After filling the databse with desired data, the user can then build workouts with the workout builder form.
 
 ## Add/Update/Delete Form
+### To add, update, or delete a muscle group or exercise, select it from the menu at the top of the app.
 
+### Muscle Group Menu Options
+![](Images/AddMG.png)
+![](Images/UpdateMG.png)
+![](Images/DeleteMG.png)
+
+### Exercise Menu Options
+![](Images/AddEX.png)
+![](Images/UpdateEX.png)
+![](Images/DeleteEX.png)
+
+## Workout Builder Form
+### To open the Workout Builder Form, select it from the menu at the top of the app.
+![](Images/OpenWorkoutBuilder.png)
+![](Images/WBForm.png)
+
+### Adding a Workout
+![](Images/AddWB.png)
+![](Images/CreatingAWorkout.png)
 
 
 
