@@ -47,7 +47,7 @@ namespace WorkoutBuilder.Model
 
         public override string ToString()
         {
-            return workoutName(WorkoutID) + "\n" + Sets + "Set(s) " + Reps + "Rep(s)";
+            return workoutName(WorkoutID) + " " + Sets + "Set(s) " + Reps + "Rep(s)";
         }
     }
 }
