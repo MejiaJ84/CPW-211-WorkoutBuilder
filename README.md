@@ -23,6 +23,15 @@
 ![](Images/UpdateEX.png)
 ![](Images/DeleteEX.png)
 
+## Workout Builder Form
+### To open the Workout Builder Form, select it from the menu at the top of the app.
+![](Images/OpenWorkoutBuilder.png)
+![](Images/WBForm.png)
+
+### Adding a Workout
+![](Images/AddWB.png)
+![](Images/CreatingAWorkout.png)
+
 
 
 
