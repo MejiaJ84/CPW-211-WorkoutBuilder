@@ -43,7 +43,8 @@ namespace WorkoutBuilder
 
                 if (_currentOp == CurrentWorkoutBuilderOperation.UpdateMuscleGroup)
                 { 
-                    UpdateMuscleGroup();
+                    WorkoutPart updateWorkoutPart = cbUpdateDelete.SelectedItem as WorkoutPart;
+                    WorkoutDBHelper.UpateMuscleGroup(updateWorkoutPart, txtAddMuscleOrExercise.Text);
                     MessageBox.Show($"{txtAddMuscleOrExercise.Text} updated successfully!");
                     txtAddMuscleOrExercise.Clear();
                 }
@@ -54,14 +55,15 @@ namespace WorkoutBuilder
                     DialogResult confirmation = MessageBox.Show($"Are you sure you want to delete {workoutPartToDelete.MuscleGroup}?", "Confirm", MessageBoxButtons.YesNo);
                     if (confirmation == DialogResult.Yes)
                     {
-                        DeleteMuscleGroup(workoutPartToDelete);
+                        WorkoutDBHelper.DeleteMuscleGroup(workoutPartToDelete);
                         MessageBox.Show($"{workoutPartToDelete.MuscleGroup} has been deleted.");
                     }
                 }
 
                 if (_currentOp == CurrentWorkoutBuilderOperation.AddExercise)
                 {
-                    AddExercise();
+                    WorkoutPart part = cbUpdateDelete.SelectedItem as WorkoutPart;
+                    WorkoutDBHelper.AddExercise(part, txtAddMuscleOrExercise.Text, rtxtExerciseDescription.Text);
                     MessageBox.Show($"{txtAddMuscleOrExercise.Text} added successfully!", "Success", MessageBoxButtons.OK);
                     txtAddMuscleOrExercise.Clear();
                     rtxtExerciseDescription.Clear();
@@ -69,7 +71,11 @@ namespace WorkoutBuilder
 
                 if (_currentOp == CurrentWorkoutBuilderOperation.UpdateExercise)
                 {
-                    UpdateExercise();
+                    WorkoutPart updatedWorkoutPartId = cbUpdateDelete.SelectedItem as WorkoutPart;
+                    Workout currentExercise = cbUpdateDeleteExercise.SelectedItem as Workout;
+                    
+                    WorkoutDBHelper.UpdateExercise(currentExercise, updatedWorkoutPartId, txtAddMuscleOrExercise.Text, rtxtExerciseDescription.Text);
+                    
                     MessageBox.Show($"{txtAddMuscleOrExercise.Text} Updated successfully!", "Success", MessageBoxButtons.OK);
                     txtAddMuscleOrExercise.Clear();
                     rtxtExerciseDescription.Clear();
@@ -77,12 +83,12 @@ namespace WorkoutBuilder
 
                 if (_currentOp == CurrentWorkoutBuilderOperation.DeleteExercise)
                 {
-                    Workout workoutToDelete = cbUpdateDeleteExercise.SelectedItem as Workout;
-                    DialogResult confirmation = MessageBox.Show($"Are you sure you want to delete {workoutToDelete.WorkoutName}?", "Confirm", MessageBoxButtons.YesNo);
+                    Workout exerciseToDelete = cbUpdateDeleteExercise.SelectedItem as Workout;
+                    DialogResult confirmation = MessageBox.Show($"Are you sure you want to delete {exerciseToDelete.WorkoutName}?", "Confirm", MessageBoxButtons.YesNo);
                     if (confirmation == DialogResult.Yes)
                     {
-                        DeleteExercise(workoutToDelete);
-                        MessageBox.Show($"{workoutToDelete.WorkoutName} has been deleted.");
+                        WorkoutDBHelper.DeleteExercise(exerciseToDelete);
+                        MessageBox.Show($"{exerciseToDelete.WorkoutName} has been deleted.");
                     }
                 }
             }
@@ -229,86 +235,6 @@ namespace WorkoutBuilder
             MakeVisible(gbAddUpdateDelete);
         }
 
-        
-        
-
-        /// <summary>
-        /// Searches the workouts part table for data matching
-        /// the string passed in and updates it with the value from
-        /// the text box
-        /// </summary>
-        /// <param name="updatedMuscleGroup"> The value obtained from the combo box</param>
-        private void UpdateMuscleGroup()
-        {
-            WorkoutBuilderContext context = new();
-            WorkoutPart workoutPartToUpdate = cbUpdateDelete.SelectedItem as WorkoutPart;
-            workoutPartToUpdate.MuscleGroup = txtAddMuscleOrExercise.Text;
-            context.Update(workoutPartToUpdate);
-            context.SaveChanges();
-        }
-
-        /// <summary>
-        /// Deletes the muscle group the user selects
-        /// from the combo box, from the database
-        /// </summary>
-        /// <param name="workoutPartToDelete"></param>
-        private void DeleteMuscleGroup(WorkoutPart workoutPartToDelete)
-        {
-            WorkoutBuilderContext context = new();
-            context.Remove(workoutPartToDelete);
-            context.SaveChanges();
-        }
-
-        /// <summary>
-        /// Adds the values from the text box
-        /// and from the combo box to the corresponding
-        /// columns in the workout table
-        /// </summary>
-        /// <param name="exerciseToAdd"></param>
-        /// <param name="exerciseBelongsToThisMuscleGroup"></param>
-        /// <param name="exerciseDescription"></param>
-        private void AddExercise()
-        {
-            WorkoutBuilderContext context = new();
-            WorkoutPart exerciseBelongsToThisMuscleGroup = cbUpdateDelete.SelectedItem as WorkoutPart;
-            Workout exercise = new()
-            {
-                WorkoutName = txtAddMuscleOrExercise.Text,
-                WorkoutPartID = exerciseBelongsToThisMuscleGroup.WorkoutPartID,
-                WorkoutDescription = rtxtExerciseDescription.Text
-            };
-            
-            context.Workouts.Add(exercise);
-            context.SaveChanges();
-        }
-
-        /// <summary>
-        /// Adds the values from the text box
-        /// and from the rich text box to the corresponding
-        /// columns in the workout table
-        /// </summary>
-        private void UpdateExercise()
-        {
-            WorkoutBuilderContext context = new();
-            Workout updatedExercise = cbUpdateDeleteExercise.SelectedItem as Workout;
-            updatedExercise.WorkoutName = txtAddMuscleOrExercise.Text;
-            updatedExercise.WorkoutDescription = rtxtExerciseDescription.Text;
-            context.Update(updatedExercise);
-            context.SaveChanges();
-        }
-
-        /// <summary>
-        /// Deletes the exercise the user selects
-        /// from the combo box, from the database
-        /// </summary>
-        /// <param name="workoutToDelete"></param>
-        private void DeleteExercise(Workout workoutToDelete)
-        {
-            WorkoutBuilderContext context = new();
-            context.Remove(workoutToDelete);
-            context.SaveChanges();
-        }
-
         /// <summary>
         /// Sets the values of the Group Box elements
         /// passed to the strings that are passed in
@@ -394,13 +320,11 @@ namespace WorkoutBuilder
             return true; // Implicit else
         }
 
-
         private void tsmWorkoutBuilder_Click(object sender, EventArgs e)
         {
             WorkoutBuilder workoutBuilderForm = new WorkoutBuilder();
             workoutBuilderForm.ShowDialog();
         }
-
 
         /// <summary>
         /// Checks if all user input fields have valid inputs
@@ -455,7 +379,7 @@ namespace WorkoutBuilder
                 }
             }
             return isDataValid;
-            // TODO: add validation to check if item isnt already in database when adding and if item is in database when updating/deleting.
+            // TODO: add validation to check if item isn't already in database when adding and if item is in database when updating/deleting.
         }
 
         /// <summary>
@@ -467,6 +391,14 @@ namespace WorkoutBuilder
             MessageBox.Show(errMsg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
+        /// <summary>
+        /// Fills the description box with the data pertaining to the 
+        /// exercise chosen from the combo box. In case when updating an exercise
+        /// only some or no parts of the description need to be changed, the user doesn't
+        /// have to re-write the description.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cbUpdateDeleteExercise_SelectedIndexChanged(object sender, EventArgs e)
         {
             FillExerciseDescriptionBox();
