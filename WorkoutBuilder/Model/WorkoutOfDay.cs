@@ -12,19 +12,34 @@ namespace WorkoutBuilder.Model
 {
     public class WorkoutOfDay
     {
+        /// <summary>
+        /// Unique ID for each workout in the workouts of day table.
+        /// </summary>
         [Key]
         public int WorkoutOfDayID { get; set; }
 
+        /// <summary>
+        /// workout ID that is referenced from workout table
+        /// </summary>
         public int WorkoutID { get; set; }
         [ForeignKey("WorkoutID")]
         public Workout Workouts { get; set; }
-
+        
+        /// <summary>
+        /// Day that the workout belongs to.
+        /// </summary>
         [Required]
         public string Day { get; set; }
 
+        /// <summary>
+        /// number of sets
+        /// </summary>
         [Range(0, int.MaxValue)]
         public int Sets { get; set; }
 
+        /// <summary>
+        /// number of reps they have to perform
+        /// </summary>
         [Range(0, int.MaxValue)]
         public int Reps { get; set; }
 

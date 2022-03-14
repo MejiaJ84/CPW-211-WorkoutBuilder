@@ -9,8 +9,15 @@ namespace WorkoutBuilder.Model
 {
     public class WorkoutPart
     {
+        /// <summary>
+        /// Unique ID that each part has.
+        /// </summary>
         [Key]
         public int WorkoutPartID { get; set; }
+
+        /// <summary>
+        /// Name of the muscle group
+        /// </summary>
         [Required]
         public string MuscleGroup { get; set; }
 

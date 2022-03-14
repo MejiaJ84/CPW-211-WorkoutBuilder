@@ -38,6 +38,11 @@ namespace WorkoutBuilder
             worktoutsToDays(lbx_Sunday, "Sunday");
         }
 
+        /// <summary>
+        /// populate the workouts to each day box that they belong to.
+        /// </summary>
+        /// <param name="listbox">Listbox for each day</param>
+        /// <param name="day">day of the week</param>
         private void worktoutsToDays(ListBox listbox, string day)
         {
             using WorkoutBuilderContext dbContext = new();
@@ -98,6 +103,10 @@ namespace WorkoutBuilder
             }
         }
 
+        /// <summary>
+        /// This method deletes the selected workouts in the box.
+        /// </summary>
+        /// <param name="listBox">Listbox for each day</param>
         private void deleteMethod(ListBox listBox)
         {
             using WorkoutBuilderContext dbContext = new();

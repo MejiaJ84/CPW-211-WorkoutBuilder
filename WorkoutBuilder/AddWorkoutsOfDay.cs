@@ -29,6 +29,9 @@ namespace WorkoutBuilder
             
         }
 
+        /// <summary>
+        /// Puts workout parts in the comboboxes for user to select
+        /// </summary>
         private void InitializeComboBoxWorkoutPart()
         {
             using WorkoutBuilderContext dbContext = new();
@@ -41,6 +44,9 @@ namespace WorkoutBuilder
             }
         }
 
+        /// <summary>
+        /// Puts all workouts in the list for users to select
+        /// </summary>
         private void InitializeComboBoxWorkout()
         {
             using WorkoutBuilderContext dbContext = new();
@@ -53,6 +59,10 @@ namespace WorkoutBuilder
             }
         }
 
+        /// <summary>
+        /// puts workouts that only belongs to selected muscle group for users to select
+        /// </summary>
+        /// <param name="WorkoutPartid"></param>
         private void InitializeComboBoxWorkout(int WorkoutPartid)
         {
             using WorkoutBuilderContext dbContext = new();
@@ -69,6 +79,9 @@ namespace WorkoutBuilder
             }
         }
 
+        /// <summary>
+        /// puts days in the list
+        /// </summary>
         private void InitializeComboBoxDays()
         {
             foreach (string day in days)
@@ -82,6 +95,10 @@ namespace WorkoutBuilder
             this.Close();
         }
 
+        /// <summary>
+        /// validate the components in the input boxes before adding a workout
+        /// </summary>
+        /// <returns>It will return true if validation went through without problem.</returns>
         private bool isValid()
         {
             if (cbx_Workout.SelectedIndex == -1)
